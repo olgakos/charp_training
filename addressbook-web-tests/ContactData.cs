@@ -9,18 +9,15 @@ namespace WebAddressbookTests
     class ContactData
     {
         private string firstname;
-        //добавляем не обязательное поле с дефолтным занчением "пустое"
-        //private string lastname = "";
+        private string lastname;
 
-        //КОНСТРУКТОР обязательного поля name - блок ниже, НЕ НАДО ;
-        public ContactData(string firstname)
+        //КОНСТРУКТОР обязательного поля name, НЕ НАДО ставить ";"
+        public ContactData (string firstname)
         {
             this.firstname = firstname;
             //this.lastname = lastname;
         }
-
-
-            public string Firstname
+                    public string Firstname
         {
             get
             {
@@ -32,9 +29,7 @@ namespace WebAddressbookTests
             }
         }
 
-        /* public string Lastname { get; internal set; }
-
-
+                
                public string Lastname
            {
                get
@@ -47,7 +42,7 @@ namespace WebAddressbookTests
                }
            }
 
-       */
+       
 
     }
 }
