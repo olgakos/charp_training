@@ -21,6 +21,7 @@ namespace WebAddressbookTests
             this.name = name;
         }
 
+        
         //КОНСТРУКТОР name + Необязательынзх доп полей - блок ниже
         public GroupData(string name, string header, string footer)
         {
@@ -67,7 +68,7 @@ namespace WebAddressbookTests
                 footer = value;
             }
         }
-
+        
 
     }
 
