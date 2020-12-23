@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    class GroupData
+    public class GroupData //BN! ГД публичный класс, чтобы видели другие 2_1
     {
 
          

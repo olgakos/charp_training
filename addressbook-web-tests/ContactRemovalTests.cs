@@ -7,10 +7,10 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace WebAddressbookTests 
+namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactCreationTest 
+    public class ContactRemovalTest
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -40,57 +40,45 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void TheContactCreationTest()
+        public void TheContactRemovalTest()
         {
-            OpenHomePage();
+            GoToHomePage();
             Login(new AccountData("admin", "secret"));
-            InitNewContactCreation();
-            ContactData contact = new ContactData("John");
-            contact.Lastname = "Lennon";
-            FillContactForm(contact);
-            SubmitContactCreationButton();
-            ReturnToHomePage();
-            LogOut();
+            GoToHome();
+            SelectContact();
+            RemoveContact();
+            ConfirmRemoval();
+            //driver.FindElement(By.LinkText("Logout")).Click();
         }
 
-        private void LogOut()
+        private void ConfirmRemoval()
         {
-            //LogOut
-            driver.FindElement(By.LinkText("Logout")).Click();
+            driver.SwitchTo().Alert().Accept(); //закрыть окошко
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            acceptNextAlert = true;
+            // ERROR: Caught exception [unknown command [CloseAlertAndGetItsText]]
         }
 
-        private void ReturnToHomePage()
+        private void RemoveContact()
         {
-            //ReturnToHomePage
-            driver.FindElement(By.LinkText("home page")).Click();
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
         }
 
-        private void SubmitContactCreationButton()
+        private void SelectContact()
         {
-            //SubmitContactCreationButton
-            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            //!!НЕ ЯСНО, КАК ОН ВЫБРАЛ ЧЕКБОКС КАКОЙ НОМЕР
+            //driver.FindElement(By.Id("87")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
         }
 
-        private void FillContactForm(ContactData contact)
+        private void GoToHome()
         {
-            //FillContactForm
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
-        }
-
-        private void InitNewContactCreation()
-        {
-            //InitNewContactCreation
-            driver.FindElement(By.LinkText("add new")).Click();
+            driver.FindElement(By.LinkText("home")).Click();
         }
 
         private void Login(AccountData account)
         {
-            //Login
+            driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Name("pass")).Click();
@@ -99,9 +87,8 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
 
-        private void OpenHomePage()
+        private void GoToHomePage()
         {
-            //OpenHomePage
             driver.Navigate().GoToUrl(baseURL);
         }
 

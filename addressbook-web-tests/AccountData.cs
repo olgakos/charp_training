@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WebAddressbookTests
 
 {
-    class AccountData 
+    public class AccountData  //BN! АД публичный класс, чтобы видели другие 2_1
 
     {
         private string username;
@@ -44,5 +44,7 @@ namespace WebAddressbookTests
                 password = value;
             }
         }
+
+        //public string Home { get; set; }
     }
 }
