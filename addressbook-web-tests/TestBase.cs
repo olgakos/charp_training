@@ -48,6 +48,7 @@ namespace WebAddressbookTests
 
 
 
+
         protected void Login(AccountData account)
         {
             //Login
@@ -62,12 +63,8 @@ namespace WebAddressbookTests
 
 
 
-        protected void LogOut()
-        {
-            //LogOut
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
 
+   
 
 
         protected void ReturnToGroupsPage()
@@ -128,6 +125,72 @@ namespace WebAddressbookTests
         }
 
 
+
+        protected void ReturnToHomePage() //ссылка на страницу Контактов
+        {
+            driver.FindElement(By.LinkText("home page")).Click();
+        }
+
+        protected void GoToHome() //Контрольно перейти на страницу Контактов
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+        }
+
+        protected void SubmitContactCreationButton() //кноп.подтвердить создание контакта
+        {
+            //SubmitContactCreationButton
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+        }
+
+        protected void FillContactForm(ContactData contact)
+        {
+            //FillContactForm
+            driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
+            driver.FindElement(By.Name("lastname")).Click();
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+        }
+
+        protected void InitNewContactCreation()
+        {
+            //InitNewContactCreation
+            driver.FindElement(By.LinkText("add new")).Click();
+        }
+
+
+
+        protected void SelectContact()
+        {
+            //!!НЕ ЯСНО, КАК ОН ВЫБРАЛ ЧЕКБОКС КАКОЙ НОМЕР
+            //driver.FindElement(By.Id("87")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
+        }
+
+
+        protected void RemoveContact() //кнопк. удалить контакт
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+        }
+
+        protected void ConfirmRemoval()
+        {
+            driver.SwitchTo().Alert().Accept(); //закрыть окошко
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            acceptNextAlert = true;
+            // ERROR: Caught exception [unknown command [CloseAlertAndGetItsText]]
+        }
+
+
+
+
+
+        protected void LogOut()
+        {
+            //LogOut
+            driver.FindElement(By.LinkText("Logout")).Click();
+        }
 
     }
 }
