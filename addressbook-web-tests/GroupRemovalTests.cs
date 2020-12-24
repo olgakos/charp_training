@@ -14,13 +14,13 @@ namespace WebAddressbookTests
     [Test]
         public void GroupRemovalTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToGroupsPage();
-            SelectGroup(1); //выбор ч-боксом первой группы из списка
-            RemoveGroup();
-            ReturnToGroupsPage();
-            LogOut();
+            navigator.GoToHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
+            navigator.GoToGroupsPage();
+            groupHelper.SelectGroup(1); //выбор ч-боксом первой группы из списка
+            groupHelper.RemoveGroup();
+            groupHelper.ReturnToGroupsPage();
+            loginHelper.LogOut();
         }
      }
 }

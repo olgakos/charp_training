@@ -15,12 +15,12 @@ namespace WebAddressbookTests
         [Test]
         public void TheContactRemovalTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToHome();
-            SelectContact();
-            RemoveContact();
-            ConfirmRemoval();
+            navigator.GoToHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
+            navigator.GoToHome(); //точно-точно перейти на список контактов
+            contactHelper.SelectContact(); // Номер строки для удаления не был указан!
+            contactHelper.RemoveContact(); // кнопка "удалить (контакт)"
+            contactHelper.ConfirmRemoval(); // алерт + подтверждение
             //driver.FindElement(By.LinkText("Logout")).Click();
         }
 
