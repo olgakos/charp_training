@@ -9,15 +9,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class NavigationHelper
-    {
-        
-            private IWebDriver driver; //поле Драйвер
-            private string baseURL;
+    public class NavigationHelper : HelperBase
 
-        public NavigationHelper (IWebDriver driver, string baseURL)//конструктор Драйвер
+    { 
+           private string baseURL;
+
+    public NavigationHelper(IWebDriver driver, string baseURL)
+        : base(driver)
             {
-                this.driver = driver;
                 this.baseURL = baseURL;
             }
 

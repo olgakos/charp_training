@@ -9,16 +9,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class GroupHelper
+    public class GroupHelper : HelperBase
+
     {
 
-
-        //Это Конструктор, в поле котрого хранится ссылка на драйвер барузера
-        private IWebDriver driver; //поле Драйвер
         public GroupHelper(IWebDriver driver)
-        { //конструктор Драйвер
-            this.driver = driver;
-        }
+            : base (driver)
+        { }
+
 
 
         public void ReturnToGroupsPage()
