@@ -31,6 +31,16 @@ namespace WebAddressbookTests
         }
 
 
+        public GroupHelper Remove(int p)
+        {
+            manager.Navigator.GoToGroupsPage();
+            
+            SelectGroup(1); //выбор ч-боксом первой группы из списка
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+
 
 
         public GroupHelper ReturnToGroupsPage()

@@ -31,6 +31,18 @@ namespace WebAddressbookTests
 
 
 
+        public ContactHelper Remove()
+        {
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+            SelectContact(); // Номер строки для удаления не был указан!
+            RemoveContact(); // кнопка "удалить (контакт)"
+            ConfirmRemoval(); // алерт + подтверждение
+            manager.Navigator.GoToHome();
+            return this;
+        }
+
+
+
 
 
 

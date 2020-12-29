@@ -13,11 +13,13 @@ namespace WebAddressbookTests
         public void TheContactRemovalTest()
         {
             //залогин теперь в ТБ в SetUp 2_4
-            app.Navigator.GoToHome(); //точно-точно перейти на список контактов
-            app.Contacts
-                .SelectContact() // Номер строки для удаления не был указан!
-                .RemoveContact() // кнопка "удалить (контакт)"
-                .ConfirmRemoval(); // алерт + подтверждение
+            //
+            app.Contacts.Remove();
+            //app.Navigator.GoToHome(); //точно-точно перейти на список контактов
+            //app.Contacts
+                //.SelectContact() // Номер строки для удаления не был указан!
+                //.RemoveContact() // кнопка "удалить (контакт)"
+               // .ConfirmRemoval(); // алерт + подтверждение
             //driver.FindElement(By.LinkText("Logout")).Click();
         }                  
     }
