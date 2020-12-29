@@ -13,9 +13,10 @@ namespace WebAddressbookTests
 
     {
 
-        public ContactHelper(IWebDriver driver)
-            : base (driver)
+        public ContactHelper(ApplicationManager manager)
+            : base(manager)
         { }
+
 
 
         public ContactHelper CreateContact(ContactData contact) 

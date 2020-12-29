@@ -15,8 +15,8 @@ namespace WebAddressbookTests
         [SetUp]
         public void SetupTest()
         {
-            //инициализируем АМ
-            app = new ApplicationManager();
+            
+            app = new ApplicationManager(); //инициализируем ссылку на АМ
             app.Navigator.GoToHomePage(); // на базовый URL
             app.Auth.Login(new AccountData("admin", "secret"));
         }

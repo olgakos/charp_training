@@ -28,15 +28,25 @@ namespace WebAddressbookTests
         public ApplicationManager()
         {
         
+            //на 2_4 13.42 фикс в этом месте
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
             //verificationErrors = new StringBuilder(); (удали рудимент 2_3)
 
-            loginHelper = new LoginHelper(driver); //инициализация метода в СетАп
-            navigator = new NavigationHelper(driver, baseURL); //инициализация метода в СетАп
-            groupHelper = new GroupHelper(driver); //инициализация метода в СетАп
-            contactHelper = new ContactHelper(driver);
+            loginHelper = new LoginHelper(this); //инициализация метода в СетАп
+            navigator = new NavigationHelper(this, baseURL); //инициализация метода в СетАп
+            groupHelper = new GroupHelper(this); //инициализация метода в СетАп
+            contactHelper = new ContactHelper(this);
         }
+
+
+        public IWebDriver Driver 
+        {
+            get
+            {
+                return driver;
+            }
+         }
 
         //новый метод для пеоеноса сюда Stop
         public void Stop()
@@ -88,6 +98,7 @@ namespace WebAddressbookTests
                 return contactHelper;
             }
         }
+
 
     }
 }

@@ -16,10 +16,11 @@ namespace WebAddressbookTests
         public void GroupCreationTest()
         {
 
-            app.Navigator.GoToGroupsPage();
+
             GroupData group = new GroupData("aaa");
             group.Header = "ddd";
             group.Footer = "fff";
+
 
             //блок из строк создания Г переехал в ГХ 2_4          
             app.Groups.CreateGroup(group);
@@ -27,7 +28,7 @@ namespace WebAddressbookTests
         }
 
 
-
+        [Test]
         public void EmptyGroupCreationTest() //тест на создание группы с пустым именем
         {
 
@@ -37,8 +38,7 @@ namespace WebAddressbookTests
 
             app.Navigator.GoToGroupsPage();
             //блок из строк создания Г переехал в ГХ 2_4
-            app.Groups.CreateGroup(group);
-            
+            app.Groups.CreateGroup(group);           
             app.Auth.LogOut();
         }
     }
