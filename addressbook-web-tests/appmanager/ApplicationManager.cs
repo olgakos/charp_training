@@ -17,7 +17,7 @@ namespace WebAddressbookTests
         protected IWebDriver driver;
         //private StringBuilder verificationErrors; (удали рудимент 2_3)
         protected string baseURL;
-        private bool acceptNextAlert = true;
+        //private bool acceptNextAlert = true; (закомтено при попытке КМТ)
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;

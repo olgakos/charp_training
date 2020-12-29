@@ -31,10 +31,26 @@ namespace WebAddressbookTests
         }
 
 
+
+
+        public GroupHelper Modify(int p, GroupData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(p);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+
+
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
-            
+
+            //SelectGroup(p); //выбор ч-боксом передаваемого занчения? 2_5 03.57 из списка
             SelectGroup(1); //выбор ч-боксом первой группы из списка
             RemoveGroup();
             ReturnToGroupsPage();
@@ -93,5 +109,24 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("submit")).Click();
             return this;
         }
+
+
+        //кажатие кнопки EDIT в группах...
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
+            return this;
+        }
+
+
+        //кажатие кнопки Updte в группах...
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+
+
     }
 }

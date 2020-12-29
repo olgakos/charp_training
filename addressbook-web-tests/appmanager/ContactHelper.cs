@@ -31,6 +31,24 @@ namespace WebAddressbookTests
 
 
 
+        public ContactHelper Modify(ContactData contact)
+        {
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+            SelectContact();
+            InitContactModification();
+            FillContactForm(contact);
+            SubmitContactModification();
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+
+            return this;
+        }
+
+
+
+
+
+
+
         public ContactHelper Remove()
         {
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
@@ -105,5 +123,31 @@ namespace WebAddressbookTests
             // ERROR: Caught exception [unknown command [CloseAlertAndGetItsText]]
             return this;
         }
+
+
+
+
+
+        public ContactHelper InitContactModification()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
+        }
+
+
+        //кажатие кнопки EDIT в контактах...
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            //contactCache = null; ....
+
+            return this;
+        }
+
+
+
+
+
+
     }
 }
