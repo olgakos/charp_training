@@ -1,19 +1,21 @@
-﻿using System;
+﻿//L 2_3
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class TestBase //BN! ТБ публичный класс, чтобы видели другие 2_1
+    public class ApplicationManager
     {
+        //этот блок мз ТБ. в АМ сразу после class1
         protected IWebDriver driver;
-        private StringBuilder verificationErrors;
+        //private StringBuilder verificationErrors; (удали рудимент 2_3)
         protected string baseURL;
         private bool acceptNextAlert = true;
 
@@ -22,22 +24,22 @@ namespace WebAddressbookTests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        [SetUp]
-        public void SetupTest()
+        //конструктор:
+        public ApplicationManager()
         {
+        
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
-            verificationErrors = new StringBuilder();
+            //verificationErrors = new StringBuilder(); (удали рудимент 2_3)
 
             loginHelper = new LoginHelper(driver); //инициализация метода в СетАп
             navigator = new NavigationHelper(driver, baseURL); //инициализация метода в СетАп
             groupHelper = new GroupHelper(driver); //инициализация метода в СетАп
             contactHelper = new ContactHelper(driver);
-
         }
 
-        [TearDown]
-        public void TeardownTest()
+        //новый метод для пеоеноса сюда Stop
+        public void Stop()
         {
             try
             {
@@ -47,23 +49,45 @@ namespace WebAddressbookTests
             {
                 // Ignore errors if unable to close the browser
             }
-            Assert.AreEqual("", verificationErrors.ToString());
+            //Assert.AreEqual("", verificationErrors.ToString());
         }
 
 
+        //новое из L2-3 4^16
+
+        public LoginHelper Auth
+        {
+            get
+            {
+                return loginHelper;
+            }
+        }
+
+        public NavigationHelper Navigator
+        {
+            get
+            {
+                return navigator;
+            }
+        }
 
 
+        public GroupHelper Groups
 
-        
+        {
+            get
+            {
+                return groupHelper;
+            }
+        }
 
-
-
-
-
-
-
-
-        
+        public  ContactHelper Contacts
+        {
+            get
+            {
+                return contactHelper;
+            }
+        }
 
     }
 }
