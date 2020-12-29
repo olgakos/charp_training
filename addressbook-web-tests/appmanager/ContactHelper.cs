@@ -18,22 +18,37 @@ namespace WebAddressbookTests
         { }
 
 
-
-
-        public void ReturnToHomePage() //ссылка на страницу Контактов
+        public ContactHelper CreateContact(ContactData contact) 
         {
-            driver.FindElement(By.LinkText("home page")).Click();
+
+            InitNewContactCreation();
+            FillContactForm(contact);
+            SubmitContactCreationButton();
+            ReturnToHomePage();
+            return this;
         }
 
 
 
-        public void SubmitContactCreationButton() //кноп.подтвердить создание контакта
+
+
+
+        public ContactHelper ReturnToHomePage() //ссылка на страницу Контактов
+        {
+            driver.FindElement(By.LinkText("home page")).Click();
+            return this;
+        }
+
+
+
+        public ContactHelper SubmitContactCreationButton() //кноп.подтвердить создание контакта
         {
             //SubmitContactCreationButton
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            return this;
         }
 
-        public void FillContactForm(ContactData contact)
+        public ContactHelper FillContactForm(ContactData contact)
         {
             //FillContactForm
             driver.FindElement(By.Name("firstname")).Click();
@@ -42,39 +57,40 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            return this;
         }
 
-        public void InitNewContactCreation()
+        public ContactHelper InitNewContactCreation()
         {
             //InitNewContactCreation
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
 
 
 
-        public void SelectContact()
+        public ContactHelper SelectContact()
         {
             //!!НЕ ЯСНО, КАК ОН ВЫБРАЛ ЧЕКБОКС? Выбрал ли вообще или проскочил?
             //driver.FindElement(By.Id("87")).Click();
             driver.FindElement(By.Name("selected[]")).Click();
+            return this;
         }
 
 
-        public void RemoveContact() //кнопк. удалить контакт
+        public ContactHelper RemoveContact() //кнопк. удалить контакт
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
         }
 
-        public void ConfirmRemoval()  // алерт + подтверждение действия
+        public ContactHelper ConfirmRemoval()  // алерт + подтверждение действия
         {
             driver.SwitchTo().Alert().Accept(); //закрыть окошко
             //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
             //acceptNextAlert = true; //не понятно что это. Что-то про алерт?
             // ERROR: Caught exception [unknown command [CloseAlertAndGetItsText]]
+            return this;
         }
-
-
-
-
     }
 }

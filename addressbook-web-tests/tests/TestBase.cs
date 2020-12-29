@@ -17,6 +17,8 @@ namespace WebAddressbookTests
         {
             //инициализируем АМ
             app = new ApplicationManager();
+            app.Navigator.GoToHomePage(); // на базовый URL
+            app.Auth.Login(new AccountData("admin", "secret"));
         }
 
         [TearDown]

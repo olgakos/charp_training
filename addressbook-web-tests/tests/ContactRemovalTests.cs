@@ -12,12 +12,12 @@ namespace WebAddressbookTests
         [Test]
         public void TheContactRemovalTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
+            //залогин теперь в ТБ в SetUp 2_4
             app.Navigator.GoToHome(); //точно-точно перейти на список контактов
-            app.Contacts.SelectContact(); // Номер строки для удаления не был указан!
-            app.Contacts.RemoveContact(); // кнопка "удалить (контакт)"
-            app.Contacts.ConfirmRemoval(); // алерт + подтверждение
+            app.Contacts
+                .SelectContact() // Номер строки для удаления не был указан!
+                .RemoveContact() // кнопка "удалить (контакт)"
+                .ConfirmRemoval(); // алерт + подтверждение
             //driver.FindElement(By.LinkText("Logout")).Click();
         }                  
     }

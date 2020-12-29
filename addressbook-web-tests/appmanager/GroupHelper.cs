@@ -15,43 +15,51 @@ namespace WebAddressbookTests
 
         public GroupHelper(IWebDriver driver)
             : base (driver)
-        { }
+        { 
+        }
+
+
+        public GroupHelper CreateGroup(GroupData group)
+        {
+            InitNewGroupCreation();
+            FillGroupForm(group);
+            SubmitGroupCreationButton();
+            ReturnToGroupsPage();
+            return this;
+        }
 
 
 
-        public void ReturnToGroupsPage()
+
+        public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();
+            return this;
         }
 
 
-
-        public void RemoveGroup()
+           public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.Name("delete")).Click();
+            return this;
         }
 
-        public void SelectGroup(int index)
+        public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
         }
 
 
-
-
-
-
-
-
-        public void InitNewGroupCreation()
+        public GroupHelper InitNewGroupCreation()
         {
             //InitNewGroupCreation
             driver.FindElement(By.Name("new")).Click();
+            return this;
         }
 
 
-
-        public void FillGroupForm(GroupData group)
+        public GroupHelper FillGroupForm(GroupData group)
         {
             //FillGroupForm
             driver.FindElement(By.Name("group_name")).Click();
@@ -63,17 +71,15 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            return this;
         }
 
 
-        public void SubmitGroupCreationButton()
+        public GroupHelper SubmitGroupCreationButton()
         {
             //SubmitGroupCreationButton
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
-
-
-
-
     }
 }

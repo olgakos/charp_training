@@ -15,19 +15,31 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData ("admin", "secret"));
+
             app.Navigator.GoToGroupsPage();
-            app.Groups.InitNewGroupCreation();
-            GroupData group = new GroupData("nnn");
-            group.Header = "hhh";
+            GroupData group = new GroupData("aaa");
+            group.Header = "ddd";
             group.Footer = "fff";
-            app.Groups.FillGroupForm(group);
-            app.Groups.SubmitGroupCreationButton();
-            app.Groups.ReturnToGroupsPage();
+
+            //блок из строк создания Г переехал в ГХ 2_4          
+            app.Groups.CreateGroup(group);
             app.Auth.LogOut();
         }
 
-                                   
+
+
+        public void EmptyGroupCreationTest() //тест на создание группы с пустым именем
+        {
+
+            GroupData group = new GroupData("");
+            group.Header = "";
+            group.Footer = "";
+
+            app.Navigator.GoToGroupsPage();
+            //блок из строк создания Г переехал в ГХ 2_4
+            app.Groups.CreateGroup(group);
+            
+            app.Auth.LogOut();
+        }
     }
 }
