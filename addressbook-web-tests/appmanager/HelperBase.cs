@@ -19,5 +19,20 @@ namespace WebAddressbookTests
             driver = manager.Driver;
         }
 
+
+        //новый общий ПУБЛИК метод Type (вводит значения в поля ввода) в ФиггГКФорм 3_1
+        public void Type(By locator, string text)
+        {
+            //если тескт НЕ ноль, ТО выполняем.... ИНАЧЕ проскакиаем  3_1
+            if (text != null)
+
+            {
+                driver.FindElement(locator).Click();
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+        }
+
+
     }
 }

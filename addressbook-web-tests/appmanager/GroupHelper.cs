@@ -96,13 +96,9 @@ namespace WebAddressbookTests
 
             return this;
         }
-        //FillGroupForm часть 2 3_1
-        public void Type(By locator, string text)
-        {
-            driver.FindElement(locator).Click(); //лишний шаг?
-            driver.FindElement(locator).Clear();
-            driver.FindElement(locator).SendKeys(text);
-        }
+
+    //Type 3_1 уехал в ТБ
+
 
         public GroupHelper SubmitGroupCreationButton()
         {

@@ -72,6 +72,7 @@ namespace WebAddressbookTests
 
 
 
+
         public ContactHelper SubmitContactCreationButton() //кноп.подтвердить создание контакта
         {
             //SubmitContactCreationButton
@@ -79,21 +80,22 @@ namespace WebAddressbookTests
             return this;
         }
 
+
+
+
+        //FillContactForm 3_1 сильно сокращено...
         public ContactHelper FillContactForm(ContactData contact)
         {
-            //FillContactForm 3_1
             Type(By.Name("firstname"), contact.Firstname);
+            Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("lastname"), contact.Lastname);
 
             return this;
         }
-        //FillContactForm(part2) 3_1
-        private void Type(By locator, string text)
-        {
-            driver.FindElement(locator).Click();
-            driver.FindElement(locator).Clear();
-            driver.FindElement(locator).SendKeys(text);
-        }
+        //Type 3_1 уехал в ТБ 
+
+
+
 
         public ContactHelper InitNewContactCreation()
         {
@@ -113,11 +115,17 @@ namespace WebAddressbookTests
         }
 
 
+
+
         public ContactHelper RemoveContact() //кнопк. удалить контакт
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
         }
+
+
+
+
 
         public ContactHelper ConfirmRemoval()  // алерт + подтверждение действия
         {
@@ -147,9 +155,6 @@ namespace WebAddressbookTests
 
             return this;
         }
-
-
-
 
 
 

@@ -10,6 +10,7 @@ namespace WebAddressbookTests
     {
         private string firstname;
         private string lastname;
+        private string middlename;
 
         //КОНСТРУКТОР обязательного поля name, НЕ НАДО ставить ";"
         public ContactData (string firstname)
@@ -42,7 +43,20 @@ namespace WebAddressbookTests
                }
            }
 
-       
+
+        public string Middlename
+        {
+            get
+            {
+                return middlename;
+            }
+            set
+            {
+                middlename = value;
+            }
+        }
+
+
 
     }
 }
