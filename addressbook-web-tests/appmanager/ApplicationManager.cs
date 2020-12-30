@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading; //L3_2
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -23,9 +24,11 @@ namespace WebAddressbookTests
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
+       
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         //конструктор:
-        public ApplicationManager()
+        private ApplicationManager()
         {
         
             //на 2_4 13.42 фикс в этом месте
@@ -39,17 +42,8 @@ namespace WebAddressbookTests
             contactHelper = new ContactHelper(this);
         }
 
+         ~ApplicationManager() //3_2 код останавливающйи браузер МОДИФ.ФИДИМОСТИ ДЕСТРУКТОРУ НЕ НУЖЕН!
 
-        public IWebDriver Driver 
-        {
-            get
-            {
-                return driver;
-            }
-         }
-
-        //новый метод для пеоеноса сюда Stop
-        public void Stop()
         {
             try
             {
@@ -61,6 +55,32 @@ namespace WebAddressbookTests
             }
             //Assert.AreEqual("", verificationErrors.ToString());
         }
+
+
+
+
+        public static ApplicationManager GetInstance() //L3_2 + глобальный
+            //"ЕСЛИ поле инстанс - ноль, надао созать АМ. ИНАЧЕ ничего. L3_2
+        {
+            if (! app.IsValueCreated)
+            {
+                app.Value = new ApplicationManager();
+            }
+            return app.Value;
+        }
+
+
+
+        public IWebDriver Driver 
+        {
+            get
+            {
+                return driver;
+            }
+         }
+
+        //метод Stop удален 3_2 и код переехал выше
+
 
 
 

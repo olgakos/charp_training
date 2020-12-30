@@ -12,24 +12,18 @@ namespace WebAddressbookTests
     public class TestSuiteFixture
     {
 
-        public static ApplicationManager app; //поле АМ (из IAM)
+        //public static ApplicationManager app; //поле АМ (из IAM) больше не надо Л3_2
 
         [SetUp]
         public void InitApplicationManager()
         {
-            app = new ApplicationManager(); //создали АМ
+            ApplicationManager app = ApplicationManager.GetInstance(); //создали АМ
             app.Navigator.GoToHomePage(); // на базовый URL
             app.Auth.Login(new AccountData("admin", "secret"));
         }
 
 
-
-        [TearDown]
-        public void StopApplicationManager()
-        {
-            app.Stop(); //браузер остановистя 1 раз после выполения ВСЕХ тестов
-        }
-
+        //[TearDown] 3_2 удалили
 
     }
 }

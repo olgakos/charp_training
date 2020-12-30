@@ -16,15 +16,12 @@ namespace WebAddressbookTests
         [SetUp]
         public void SetupTest()
         {
-            app = TestSuiteFixture.app; //3_2
+            app = ApplicationManager.GetInstance(); //3_2
             //3_2 код задогина переехал в общую инициализацию ТСФ
         }
 
 
-
        // [TearDown]уехало в ТСФ 3_2
-
-
 
 
     }
