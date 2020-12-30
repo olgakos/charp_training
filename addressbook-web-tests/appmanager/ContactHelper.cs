@@ -81,14 +81,18 @@ namespace WebAddressbookTests
 
         public ContactHelper FillContactForm(ContactData contact)
         {
-            //FillContactForm
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            //FillContactForm 3_1
+            Type(By.Name("firstname"), contact.Firstname);
+            Type(By.Name("lastname"), contact.Lastname);
+
             return this;
+        }
+        //FillContactForm(part2) 3_1
+        private void Type(By locator, string text)
+        {
+            driver.FindElement(locator).Click();
+            driver.FindElement(locator).Clear();
+            driver.FindElement(locator).SendKeys(text);
         }
 
         public ContactHelper InitNewContactCreation()

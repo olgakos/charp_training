@@ -90,18 +90,19 @@ namespace WebAddressbookTests
         public GroupHelper FillGroupForm(GroupData group)
         {
             //FillGroupForm
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
+
             return this;
         }
-
+        //FillGroupForm часть 2 3_1
+        public void Type(By locator, string text)
+        {
+            driver.FindElement(locator).Click(); //лишний шаг?
+            driver.FindElement(locator).Clear();
+            driver.FindElement(locator).SendKeys(text);
+        }
 
         public GroupHelper SubmitGroupCreationButton()
         {
