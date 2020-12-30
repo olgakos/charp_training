@@ -34,5 +34,22 @@ namespace WebAddressbookTests
         }
 
 
+
+        public bool IsElementPresent(By by) ////????
+        {
+            try
+            {
+                driver.FindElement(by);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
+
     }
 }

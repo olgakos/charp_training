@@ -14,10 +14,10 @@ namespace WebAddressbookTests
         protected ApplicationManager app;
 
         [SetUp]
-        public void SetupTest()
+        public void SetupAplicationmanager() //L3_3 переименвали
         {
             app = ApplicationManager.GetInstance(); //3_2
-            //3_2 код задогина переехал в общую инициализацию ТСФ
+            //app.Auth.Login(new AccountData("admin", "secret")); уехал в 3_3
         }
 
 

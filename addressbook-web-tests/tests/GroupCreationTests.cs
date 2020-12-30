@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupCreationTests : AuthTestBase //L3_3
     {
         
         [Test]
@@ -24,7 +24,7 @@ namespace WebAddressbookTests
 
             //блок из строк создания Г переехал в ГХ 2_4          
             app.Groups.CreateGroup(group);
-            app.Auth.LogOut();
+            //app.Auth.LogOut();
         }
 
 

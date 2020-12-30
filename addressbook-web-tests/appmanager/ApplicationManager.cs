@@ -64,7 +64,9 @@ namespace WebAddressbookTests
         {
             if (! app.IsValueCreated)
             {
-                app.Value = new ApplicationManager();
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.GoToHomePage(); // на базовый URL перененесли сюда в 3_3 из ТФС
+                app.Value = newInstance;
             }
             return app.Value;
         }
