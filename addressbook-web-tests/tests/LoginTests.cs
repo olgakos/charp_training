@@ -39,6 +39,5 @@ namespace WebAddressbookTests
             //verification
             Assert.IsFalse(app.Auth.IsLoggedIn(account));
         }
-
     }
 }

@@ -15,27 +15,28 @@ namespace WebAddressbookTests
     [Test]
         public void GroupRemovalTest()
         {
-
+            //app.Navigator.GoToGroupsPage();
 
             //начало: поверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
             if (!app.Groups.IsElementPresentByClassName())
             {
-                GroupData group = new GroupData("ABBA");
+                GroupData group = new GroupData("aaa");
                 group.Header = "ABBA_h";
                 group.Footer = "ABBA_f";
                 app.Groups.CreateGroup(group);
             }
-            //конец проверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
+            //конец поверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList(); //4_3
 
+            app.Groups.Remove(0);  //4_3  Почему падает, если занченеи 0??? (4_3)
 
-            app.Groups.Remove(1);
-            //app.Navigator.GoToGroupsPage();
-            //app.Groups
-                //.SelectGroup(1) //выбор ч-боксом первой группы из списка
-                //.RemoveGroup()
-               // .ReturnToGroupsPage();
-            app.Auth.LogOut();
+           List<GroupData> newGroups = app.Groups.GetGroupList(); //4_3
+
+            oldGroups.RemoveAt(0); //4_3  Почему падает, если занченеи 0??? (4_3)
+            Assert.AreEqual(oldGroups, newGroups); //4_3
+
+            //app.Auth.LogOut();
         }
      }
 }

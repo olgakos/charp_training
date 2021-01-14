@@ -30,12 +30,22 @@ namespace WebAddressbookTests
 
 
 
-
             GroupData newData = new GroupData("modify zzz");
             newData.Header = null; // т.е поле менять не будем...
             newData.Footer = null; // т.е поле менять не будем...
 
-            app.Groups.Modify(1, newData);
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList(); //спиок 4_3
+
+            app.Groups.Modify(0, newData);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList(); //4_3
+            oldGroups[0].Name = newData.Name; //4_3
+            oldGroups.Sort(); //4_3
+            newGroups.Sort(); //4_3
+            Assert.AreEqual(oldGroups, newGroups); //4_3
+
+
         }
 
 

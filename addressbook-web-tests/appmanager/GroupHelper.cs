@@ -39,6 +39,7 @@ namespace WebAddressbookTests
             {
                 groups.Add(new GroupData(element.Text));
             }
+
             return groups;
         }
 
@@ -61,7 +62,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToGroupsPage();
 
             //SelectGroup(p); //выбор ч-боксом передаваемого занчения? 2_5 03.57 из списка
-            SelectGroup(1); //выбор ч-боксом первой группы из списка
+            SelectGroup(p); //выбор ч-боксом первой группы из списка
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
@@ -84,7 +85,8 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            //driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click(); //было в л3
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
             return this;
         }
 
