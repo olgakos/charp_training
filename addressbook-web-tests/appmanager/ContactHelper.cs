@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
+
 namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
-
     {
-
-        public ContactHelper(ApplicationManager manager)
-            : base(manager)
+        public ContactHelper(ApplicationManager manager) : base(manager)
         { }
+
 
 
 
         public ContactHelper CreateContact(ContactData contact) 
         {
-
             InitNewContactCreation();
             FillContactForm(contact);
             SubmitContactCreationButton();
@@ -30,27 +30,17 @@ namespace WebAddressbookTests
         }
 
 
-        //HW 9 start
-        public List<ContactData> GetContactList()
+        //v ???
+        public ContactHelper Remove()
         {
-            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+            SelectContact(); // Номер строки для удаления не был указан!
+            RemoveContact(); // кнопка "удалить (контакт)"
+            ConfirmRemoval(); // алерт + подтверждение
+            manager.Navigator.GoToHome();
 
-            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-
-            foreach (IWebElement element in elements)
-            {
-                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-
-                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
-            }
-
-            return contacts;
+            return this;
         }
-
-        //HW 9 end
-
-
-
 
         public ContactHelper Modify(ContactData contact)
         {
@@ -66,18 +56,29 @@ namespace WebAddressbookTests
 
 
 
+        private List<ContactData> contactCache = null;
 
+        public List<ContactData> GetContactList()
 
-        public ContactHelper Remove()
-        {
-            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
-            SelectContact(); // Номер строки для удаления не был указан!
-            RemoveContact(); // кнопка "удалить (контакт)"
-            ConfirmRemoval(); // алерт + подтверждение
-            manager.Navigator.GoToHome();
+        { if (contactCache == null)
+            {
+                contactCache = new List<ContactData>();
 
-            return this;
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+
+                foreach (IWebElement element in elements)
+                {
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+
+                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text));
+                }
+            }
+
+            return new List<ContactData>(contactCache);
         }
+
+
+
 
 
         /* неудачный 
@@ -106,8 +107,8 @@ namespace WebAddressbookTests
 
         public ContactHelper SubmitContactCreationButton() //кноп.подтвердить создание контакта
         {
-            //SubmitContactCreationButton
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -120,7 +121,7 @@ namespace WebAddressbookTests
             Type(By.Name("firstname"), contact.Firstname);
             Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("lastname"), contact.Lastname);
-
+            //список можно продолжить...
             return this;
         }
         //Type 3_1 уехал в ТБ 
@@ -137,7 +138,7 @@ namespace WebAddressbookTests
 
 
 
-       // public ContactHelper SelectContact(string v) //недачный hw9
+       // public ContactHelper SelectContact(string v) //неудачный hw9
         public ContactHelper SelectContact() //hw9
         {
             //!!НЕ ЯСНО, КАК ОН ВЫБРАЛ ЧЕКБОКС? Выбрал ли вообще или проскочил?
@@ -152,11 +153,12 @@ namespace WebAddressbookTests
 
         public ContactHelper RemoveContact() //кнопк. удалить контакт
         {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            //acceptNextAlert = true; //закрыть окошко
+            //driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            contactCache = null;
             return this;
         }
-
-
 
 
 
@@ -166,6 +168,12 @@ namespace WebAddressbookTests
             //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
             //acceptNextAlert = true; //не понятно что это. Что-то про алерт?
             // ERROR: Caught exception [unknown command [CloseAlertAndGetItsText]]
+
+            acceptNextAlert = true; //закрыть окошко
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+
+            contactCache = null;
             return this;
         }
 
@@ -184,12 +192,18 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
-            //contactCache = null; ....
+            //driver.FindElement(By.XPath("(//input[@name='update'])[1]")).Click();
+            contactCache = null; 
 
             return this;
         }
 
 
+
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.Name("entry")).Count;
+        }
 
     }
 }

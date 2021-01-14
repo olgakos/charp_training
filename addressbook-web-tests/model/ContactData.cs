@@ -78,7 +78,14 @@ namespace WebAddressbookTests
                 return 1;
             }
 
-            return (Firstname + Lastname).CompareTo(other.Firstname + other.Lastname);
+            //return (Firstname + Lastname).CompareTo(other.Firstname + other.Lastname); (до 4.5)
+
+            if (Lastname.CompareTo(other.Lastname) != 0)
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
+
+            return Firstname.CompareTo(other.Firstname);
 
         }
 
