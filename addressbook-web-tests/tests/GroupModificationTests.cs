@@ -15,7 +15,6 @@ namespace WebAddressbookTests
         public void GroupModificationTest() 
         {
 
-            //начало 8_1 правки //начало: поверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
             app.Navigator.GoToGroupsPage();
 
             if (!app.Groups.IsElementPresentByClassName())
@@ -36,8 +35,12 @@ namespace WebAddressbookTests
 
 
             List<GroupData> oldGroups = app.Groups.GetGroupList(); //спиок 4_3
+            GroupData oldData = oldGroups[0];
+
 
             app.Groups.Modify(0, newData);
+
+            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount()); //4_5
 
             List<GroupData> newGroups = app.Groups.GetGroupList(); //4_3
             oldGroups[0].Name = newData.Name; //4_3
@@ -45,9 +48,16 @@ namespace WebAddressbookTests
             newGroups.Sort(); //4_3
             Assert.AreEqual(oldGroups, newGroups); //4_3
 
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.Name, group.Name);
+                }
+            }
+
 
         }
-
 
     }
 }

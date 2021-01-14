@@ -9,48 +9,32 @@ namespace WebAddressbookTests
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-        private string name;
-        private string header = "";
-        private string footer = "";
-
-
-        //КОНСТРУКТОР обязательного поля name - блок ниже
-        public GroupData(string name)
-        {
-            this.name = name;
-        }
-
-
-
+        public GroupData(string name) //4_5
+        { Name = name; }
 
 
         //л4_м1 начало
         public bool Equals(GroupData other)
         {
             if (Object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
+            { return false; }
 
             if (Object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
+            { return true;  }
 
             return Name == other.Name;
         }
 
         //l4_m3 
         public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        { return Name.GetHashCode(); }
 
         //l4_m3 
         public override string ToString()
         {
             return "name=" + Name;
         }
+
 
 
 
@@ -65,11 +49,10 @@ namespace WebAddressbookTests
 
         
 
-
         //л4_м1 конец
 
 
-
+        /* убрано в 4-5
         //КОНСТРУКТОР name + Необязательынзх доп полей - блок ниже
         public GroupData(string name, string header, string footer)
         {
@@ -77,46 +60,14 @@ namespace WebAddressbookTests
             this.header = header;
             this.footer = footer;
         }
+        */
 
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
+        public string Name { get; set; }
+        public string Header { get; set; } 
+        public string Footer { get; set; } 
+        public string Id { get; set; }
 
 
-
-        public string Header
-        {
-            get
-            {
-                return header;
-            }
-            set
-            {
-                header = value;
-            }
-        }
-
-
-        public string Footer
-        {
-            get
-            {
-                return footer;
-            }
-            set
-            {
-                footer = value;
-            }
-        }
-        
 
     }
 

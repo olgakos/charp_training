@@ -28,13 +28,23 @@ namespace WebAddressbookTests
             //конец поверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
 
             List<GroupData> oldGroups = app.Groups.GetGroupList(); //4_3
+            app.Groups.Remove(0);  
+            Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount()); //4_5
+            List<GroupData> newGroups = app.Groups.GetGroupList(); //4_3
 
-            app.Groups.Remove(0);  //4_3  Почему падает, если занченеи 0??? (4_3)
+            //ниже и до конца- правки из 4_5 
+            GroupData toBeRemoved = oldGroups[0];
 
-           List<GroupData> newGroups = app.Groups.GetGroupList(); //4_3
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
 
-            oldGroups.RemoveAt(0); //4_3  Почему падает, если занченеи 0??? (4_3)
-            Assert.AreEqual(oldGroups, newGroups); //4_3
+            foreach (GroupData group in newGroups)
+            {
+                Assert.AreNotEqual(group.Id, toBeRemoved.Id);
+            }
+
+            //oldGroups.RemoveAt(0); 
+            //Assert.AreEqual(oldGroups, newGroups); //4_3
 
             //app.Auth.LogOut();
         }
