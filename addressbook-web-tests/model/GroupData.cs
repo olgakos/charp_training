@@ -8,8 +8,6 @@ namespace WebAddressbookTests
 {
     public class GroupData //BN! ГД публичный класс, чтобы видели другие 2_1
     {
-
-         
         private string name;
         private string header = "";
         private string footer = "";
