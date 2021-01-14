@@ -14,6 +14,21 @@ namespace WebAddressbookTests
         {
             //залогин теперь в ТБ в SetUp 2_4
             //
+
+            //з8_1 правка начало
+            if (!app.Contacts.IsElementPresentByName())
+            {
+                ContactData contact = new ContactData("Ringo2");
+                contact.Middlename = "Richard";
+                contact.Lastname = "Starr";
+
+                app.Contacts.CreateContact(contact);
+            }
+
+            //з8_1 правка конец
+
+
+
             app.Contacts.Remove();
             //app.Navigator.GoToHome(); //точно-точно перейти на список контактов
             //app.Contacts

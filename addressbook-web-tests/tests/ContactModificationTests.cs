@@ -15,6 +15,21 @@ namespace WebAddressbookTests
         public void ContactModificationTest()
         {
 
+
+            //з8_1 правка начаало
+            if (!app.Contacts.IsElementPresentByName())
+            {
+                ContactData contact = new ContactData("Ringo2");
+                contact.Middlename = "Richard";
+                contact.Lastname = "Starr";
+
+
+                app.Contacts.CreateContact(contact);
+            }
+            //з8_1 правка конец
+
+
+
             ContactData newData = new ContactData("Ringo");
             newData.Middlename = null; // т.е поле менять не будем...
             newData.Lastname = null; // т.е поле менять не будем...

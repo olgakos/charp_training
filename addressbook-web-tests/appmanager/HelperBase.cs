@@ -51,5 +51,64 @@ namespace WebAddressbookTests
 
 
 
+        //начало правок задачи 8
+
+
+        public bool IsElementPresentByClassName()
+        {
+            return IsElementPresent(By.ClassName("group"));
+        }
+
+        public bool IsElementPresentByName()
+        {
+            return IsElementPresent(By.Name("selected[]"));
+        }
+
+
+        //для 8_1 правок конствутов:
+        private bool IsAlertPresent()
+        {
+            try
+            {
+                driver.SwitchTo().Alert();
+                return true;
+            }
+            catch (NoAlertPresentException)
+            {
+                return false;
+            }
+        }
+
+   /*     public string CloseAlertAndGetItsText()
+        {
+            try
+            {
+                IAlert alert = driver.SwitchTo().Alert();
+                string alertText = alert.Text;
+                if (acceptNextAlert)
+                {
+                    alert.Accept();
+                }
+                else
+                {
+                    alert.Dismiss();
+                }
+                return alertText;
+            }
+            finally
+            {
+                acceptNextAlert = true;
+            }
+        }
+
+        */
+
+        //конец правок задачи 8
+
+
+
+
+
+
     }
 }

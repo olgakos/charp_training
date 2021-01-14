@@ -16,6 +16,19 @@ namespace WebAddressbookTests
         public void GroupRemovalTest()
         {
 
+
+            //начало: поверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
+            if (!app.Groups.IsElementPresentByClassName())
+            {
+                GroupData group = new GroupData("ABBA");
+                group.Header = "ABBA_h";
+                group.Footer = "ABBA_f";
+                app.Groups.CreateGroup(group);
+            }
+            //конец проверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
+
+
+
             app.Groups.Remove(1);
             //app.Navigator.GoToGroupsPage();
             //app.Groups
