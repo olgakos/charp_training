@@ -30,6 +30,27 @@ namespace WebAddressbookTests
         }
 
 
+        //HW 9 start
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+
+            foreach (IWebElement element in elements)
+            {
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+
+                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
+            }
+
+            return contacts;
+        }
+
+        //HW 9 end
+
+
+
 
         public ContactHelper Modify(ContactData contact)
         {
@@ -47,8 +68,6 @@ namespace WebAddressbookTests
 
 
 
-
-
         public ContactHelper Remove()
         {
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
@@ -56,11 +75,23 @@ namespace WebAddressbookTests
             RemoveContact(); // кнопка "удалить (контакт)"
             ConfirmRemoval(); // алерт + подтверждение
             manager.Navigator.GoToHome();
+
             return this;
         }
 
 
+        /* неудачный 
+        public ContactHelper Remove(string v)
+        {
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+            SelectContact(v); // Номер строки для удаления не был указан!
+            RemoveContact(); // кнопка "удалить (контакт)"
+            ConfirmRemoval(); // алерт + подтверждение
+            manager.Navigator.GoToHome();
 
+            return this;
+        }
+        */
 
 
 
@@ -106,11 +137,13 @@ namespace WebAddressbookTests
 
 
 
-        public ContactHelper SelectContact()
+       // public ContactHelper SelectContact(string v) //недачный hw9
+        public ContactHelper SelectContact() //hw9
         {
             //!!НЕ ЯСНО, КАК ОН ВЫБРАЛ ЧЕКБОКС? Выбрал ли вообще или проскочил?
             //driver.FindElement(By.Id("87")).Click();
-            driver.FindElement(By.Name("selected[]")).Click();
+            driver.FindElement(By.Name("selected[]")).Click(); //было до ДЗ9
+            //driver.FindElement(By.Name(v)).Click();  //неудачный ДЗ9
             return this;
         }
 

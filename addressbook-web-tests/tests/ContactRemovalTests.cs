@@ -2,6 +2,8 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic; //не забывай вставлять в тесты где есть <List!!>
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -12,15 +14,14 @@ namespace WebAddressbookTests
         [Test]
         public void TheContactRemovalTest()
         {
-            //залогин теперь в ТБ в SetUp 2_4
-            //
 
             //з8_1 правка начало
             if (!app.Contacts.IsElementPresentByName())
             {
-                ContactData contact = new ContactData("Ringo2");
+                ContactData contact = new ContactData("Ringo2", "Starr");
                 contact.Middlename = "Richard";
-                contact.Lastname = "Starr";
+                contact.Nickname = "4";
+                //список пунктов можно продолжить...
 
                 app.Contacts.CreateContact(contact);
             }
@@ -28,14 +29,21 @@ namespace WebAddressbookTests
             //з8_1 правка конец
 
 
+            //app.Contacts.Remove(); //было ранее
 
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+
+            //app.Contacts.Remove("selected[]");
             app.Contacts.Remove();
-            //app.Navigator.GoToHome(); //точно-точно перейти на список контактов
-            //app.Contacts
-                //.SelectContact() // Номер строки для удаления не был указан!
-                //.RemoveContact() // кнопка "удалить (контакт)"
-               // .ConfirmRemoval(); // алерт + подтверждение
-            //driver.FindElement(By.LinkText("Logout")).Click();
+            app.Contacts.Wait(TimeSpan.FromSeconds(oldContacts.Count * 2)); 
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+
         }                  
     }
 }

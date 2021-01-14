@@ -14,6 +14,13 @@ namespace WebAddressbookTests
         protected IWebDriver driver; //поле Драйвер protected
         protected ApplicationManager manager; //поле manager - protected
 
+        
+        //hw9 ОЖИДАНИЕ
+        public void Wait(TimeSpan timeSpan)
+        { driver.Manage().Timeouts().ImplicitWait = timeSpan;}
+ 
+     
+
         public HelperBase(ApplicationManager manager) {
             this.manager = manager;
             driver = manager.Driver;

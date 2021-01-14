@@ -14,20 +14,34 @@ namespace WebAddressbookTests
         public void TheContactCreationTest()
         {
             //залогин теперь в ТБ в SetUp 2_4
-            ContactData contact = new ContactData("John");
+            ContactData contact = new ContactData("John", "Lennon");
             contact.Middlename = "Winston";
-            contact.Lastname = "Lennon";
+            contact.Nickname = "first";
+
+        List<ContactData> oldContacts = app.Contacts.GetContactList();
+            
             app.Contacts.CreateContact(contact);
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+
             //app.Auth.LogOut();
         }
+
+
+
+
 
         [Test]
         public void EmptyContactCreationTest()
         {
             //залогин теперь в ТБ в SetUp 2_4
-            ContactData contact = new ContactData("");
+            ContactData contact = new ContactData("", "");
             contact.Middlename = "";
-            contact.Lastname = "";
+            contact.Nickname = "";
             //блок из строк создания К переехал в КХ 2_4
 
             app.Contacts.CreateContact(contact);

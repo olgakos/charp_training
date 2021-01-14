@@ -52,7 +52,9 @@ namespace WebAddressbookTests
             return "name=" + Name;
         }
 
-        public int CompareTo(GroupData other)
+
+
+       public int CompareTo(GroupData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
@@ -60,6 +62,9 @@ namespace WebAddressbookTests
             }
             return Name.CompareTo(other.Name);
         }
+
+        
+
 
         //л4_м1 конец
 
