@@ -12,8 +12,7 @@ namespace WebAddressbookTests
     public class LoginHelper : HelperBase
     {
 
-        public LoginHelper(ApplicationManager manager)
-    : base(manager)
+        public LoginHelper(ApplicationManager manager) : base(manager)
         { }
 
         public void Login(AccountData account) // L3_3
@@ -24,6 +23,9 @@ namespace WebAddressbookTests
                 {
                     return;
                 }
+
+
+
                 LogOut(); //!!! вниемнеи, удали его из тела тестов, елли будет падать
 
             }
@@ -42,10 +44,11 @@ namespace WebAddressbookTests
 
         public void LogOut()
         {
-            //LogOut, л3_3 делаем умнее: "если был залогинен - выйди")
+            //л3_3: "если был залогинен - выйди")
             if (IsLoggedIn())
             {
                 driver.FindElement(By.LinkText("Logout")).Click();
+                driver.FindElement(By.Name("user")); // ждём появления формы логина hw_9
             }
 
         }

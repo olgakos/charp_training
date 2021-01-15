@@ -36,7 +36,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
             SelectContact(); // Номер строки для удаления не был указан!
             RemoveContact(); // кнопка "удалить (контакт)"
-            ConfirmRemoval(); // алерт + подтверждение
+            //ConfirmRemoval(); // алерт + подтверждение
             manager.Navigator.GoToHome();
 
             return this;
@@ -131,7 +131,6 @@ namespace WebAddressbookTests
 
         public ContactHelper InitNewContactCreation()
         {
-            //InitNewContactCreation
             driver.FindElement(By.LinkText("add new")).Click();
             return this;
         }
@@ -151,32 +150,36 @@ namespace WebAddressbookTests
 
 
 
-        public ContactHelper RemoveContact() //кнопк. удалить контакт
+        public ContactHelper RemoveContact() //нажать кнопк. удалить контакт + согласие
         {
-            //acceptNextAlert = true; //закрыть окошко
-            //driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            acceptNextAlert = true; //алерт сейчас не открыт (true)
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click(); //нашли-нажали delete
+            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.SwitchTo().Alert().Accept(); //new hw10 закрыть окно подтвержления удаления 
+            driver.FindElement(By.CssSelector("div.msgbox")); //new hw10 подождать сообщения об успешном удалении контакта 
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1); //ожидлание
             contactCache = null;
             return this;
         }
 
 
-
+        /*
         public ContactHelper ConfirmRemoval()  // алерт + подтверждение действия
         {
             driver.SwitchTo().Alert().Accept(); //закрыть окошко
-            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
-            //acceptNextAlert = true; //не понятно что это. Что-то про алерт?
+            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            acceptNextAlert = true; //не понятно что это. Что-то про алерт?
             // ERROR: Caught exception [unknown command [CloseAlertAndGetItsText]]
 
-            acceptNextAlert = true; //закрыть окошко
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
-
+            //acceptNextAlert = true; //закрыть окошко
+            //driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.FindElement(By.CssSelector("div.msgbox"));
             contactCache = null;
             return this;
         }
 
+        */
 
 
 

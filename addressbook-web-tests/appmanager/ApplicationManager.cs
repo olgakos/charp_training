@@ -35,6 +35,7 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
             //verificationErrors = new StringBuilder(); (удали рудимент 2_3)
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3); ///hw9 фикс
 
             loginHelper = new LoginHelper(this); //инициализация метода в СетАп
             navigator = new NavigationHelper(this, baseURL); //инициализация метода в СетАп
@@ -59,8 +60,8 @@ namespace WebAddressbookTests
 
 
 
-        public static ApplicationManager GetInstance() //L3_2 + глобальный
-            //"ЕСЛИ поле инстанс - ноль, надао созать АМ. ИНАЧЕ ничего. L3_2
+        public static ApplicationManager GetInstance() //L3_2
+            //"ЕСЛИ поле инстанс - ноль, надо созать АМ. ИНАЧЕ ничего. L3_2
         {
             if (! app.IsValueCreated)
             {
@@ -82,7 +83,6 @@ namespace WebAddressbookTests
          }
 
         //метод Stop удален 3_2 и код переехал выше
-
 
 
 

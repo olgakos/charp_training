@@ -42,7 +42,10 @@ namespace WebAddressbookTests
 
 
 
-        public bool IsElementPresent(By by) ////????
+
+
+
+        public bool IsElementPresent(By by) 
         {
             try
             {
@@ -54,6 +57,8 @@ namespace WebAddressbookTests
                 return false;
             }
         }
+
+
 
 
 
@@ -72,13 +77,16 @@ namespace WebAddressbookTests
         }
 
 
-        //для 8_1 правок конствутов:
+
+
+
+        //для 8_1 правок конствукторов:
         private bool IsAlertPresent()
         {
             try
             {
                 driver.SwitchTo().Alert();
-                return true;
+                return true; 
             }
             catch (NoAlertPresentException)
             {
@@ -86,7 +94,10 @@ namespace WebAddressbookTests
             }
         }
 
-   /*     public string CloseAlertAndGetItsText()
+
+
+        //проверка наличия алерат (для контактов)
+  public string CloseAlertAndGetItsText()
         {
             try
             {
@@ -108,12 +119,7 @@ namespace WebAddressbookTests
             }
         }
 
-        */
-
-        //конец правок задачи 8
-
-
-
+        //фин: проверка наличия алерат (для контактов)
 
 
 
