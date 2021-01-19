@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
+/*
 namespace WebAddressbookTests
 {
     [TestClass]
@@ -17,3 +18,5 @@ namespace WebAddressbookTests
         }
     }
 }
+
+*/
