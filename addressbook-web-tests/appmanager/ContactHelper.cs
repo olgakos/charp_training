@@ -35,7 +35,7 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
             SelectContact(); // Номер строки для удаления не был указан!
-            RemoveContact(); // кнопка "удалить (контакт)"
+            RemoveContact(); // кнопка "удалить (контакт)" +  алерт + подтверждение
             //ConfirmRemoval(); // алерт + подтверждение
             manager.Navigator.GoToHome();
 

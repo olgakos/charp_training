@@ -14,11 +14,9 @@ namespace WebAddressbookTests
 {
     public class ApplicationManager
     {
-        //этот блок мз ТБ. в АМ сразу после class1
         protected IWebDriver driver;
-        //private StringBuilder verificationErrors; (удали рудимент 2_3)
         protected string baseURL;
-        //private bool acceptNextAlert = true; (закомтено при попытке КМТ)
+        //private bool acceptNextAlert = true; // ломает КМТ?
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
@@ -34,7 +32,6 @@ namespace WebAddressbookTests
             //на 2_4 13.42 фикс в этом месте
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
-            //verificationErrors = new StringBuilder(); (удали рудимент 2_3)
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3); ///hw9 фикс
 
             loginHelper = new LoginHelper(this); //инициализация метода в СетАп

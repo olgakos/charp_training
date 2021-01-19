@@ -13,7 +13,11 @@ namespace WebAddressbookTests
     {
         protected IWebDriver driver; //поле Драйвер protected
         protected ApplicationManager manager; //поле manager - protected
+<<<<<<< HEAD
+        protected bool acceptNextAlert;
+=======
         protected bool acceptNextAlert; //ВАРИАНТ 10
+>>>>>>> 6a7bb3b8e627d63624faf8ddd4eb1d3b19af7064
 
 
         //hw9 ОЖИДАНИЕ

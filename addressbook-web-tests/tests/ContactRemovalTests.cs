@@ -29,7 +29,7 @@ namespace WebAddressbookTests
             //з8_1 правка конец
 
 
-            //app.Contacts.Remove(); //было ранее
+            //app.Contacts.Remove(); //было ранее11
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 
