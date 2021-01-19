@@ -13,8 +13,9 @@ namespace WebAddressbookTests
     {
         protected IWebDriver driver; //поле Драйвер protected
         protected ApplicationManager manager; //поле manager - protected
+        protected bool acceptNextAlert; //ВАРИАНТ 10
 
-        
+
         //hw9 ОЖИДАНИЕ
         public void Wait(TimeSpan timeSpan)
         { driver.Manage().Timeouts().ImplicitWait = timeSpan;}
