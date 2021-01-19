@@ -15,8 +15,7 @@ namespace WebAddressbookTests
         protected ApplicationManager manager; //поле manager - protected
         protected bool acceptNextAlert;
 
-
-
+        
         //hw9 ОЖИДАНИЕ
         public void Wait(TimeSpan timeSpan)
         { driver.Manage().Timeouts().ImplicitWait = timeSpan;}
