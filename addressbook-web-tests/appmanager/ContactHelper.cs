@@ -233,14 +233,14 @@ namespace WebAddressbookTests
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
-            string allEmail = cells[4].Text;
+            string allEmail = cells[4].Text; //номер столбца "все почты" WH11
             string allPhones = cells[5].Text;
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
-                AllPhones = allPhones,
-                AllEmail = allEmail
+                AllPhones = allPhones, //все почты WH11
+                AllEmail = allEmail //все почты WH11
             };
         }
 
