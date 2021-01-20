@@ -152,9 +152,9 @@ namespace WebAddressbookTests
 
         public ContactHelper RemoveContact() //нажать кнопк. удалить контакт + согласие
         {
-            acceptNextAlert = true; //алерт сейчас не открыт (true)
+            acceptNextAlert = false; //алерт сейчас НЕ открыт (true)
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click(); //нашли-нажали delete
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
             driver.SwitchTo().Alert().Accept(); //new hw10 закрыть окно подтвержления удаления 
             driver.FindElement(By.CssSelector("div.msgbox")); //new hw10 подождать сообщения об успешном удалении контакта 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1); //ожидлание
@@ -168,7 +168,7 @@ namespace WebAddressbookTests
         {
             driver.SwitchTo().Alert().Accept(); //закрыть окошко
             Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
-            acceptNextAlert = true; //не понятно что это. Что-то про алерт?
+            acceptNextAlert = true; //закрыть окошко
             // ERROR: Caught exception [unknown command [CloseAlertAndGetItsText]]
 
             //acceptNextAlert = true; //закрыть окошко
