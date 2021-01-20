@@ -245,6 +245,13 @@ namespace WebAddressbookTests
         }
 
 
+        public string GetContactInformationFromDetails()
+        {
+            manager.Navigator.GoToHomePage();
+            ShowContactDetails(0);
+            string detailsText = driver.FindElement(By.Id("content")).Text;
+            return detailsText;
+        }
 
 
 
@@ -278,6 +285,18 @@ namespace WebAddressbookTests
                 Email2 = email2,
                 Email3 = email3
             };
+
+
+
+            //hw12
+            //public void ShowContactDetails(int index)
+            public void ShowContactDetails(int index)
+
+            {
+                driver.FindElements(By.Name("entry"))[index]
+                    .FindElements(By.TagName("td"))[6]
+                    .FindElement(By.TagName("a")).Click();
+            }
 
         }
     }
