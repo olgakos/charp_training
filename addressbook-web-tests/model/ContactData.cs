@@ -9,8 +9,13 @@ namespace WebAddressbookTests
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData> //hw9
     
     {
-        private string firstname;
-        private string lastname;
+
+        private string allPhones;
+        private string allEmail;
+
+
+        //private string firstname; //week5
+        //private string lastname; //week5
         private string middlename = "";
         private string nickname = ""; 
         private string title = ""; 
@@ -33,67 +38,110 @@ namespace WebAddressbookTests
         //КОНСТРУКТОР обязательного поля name, НЕ НАДО ставить ";"
         public ContactData (string firstname, string lastname)
         {
-            this.firstname = firstname;
-            this.lastname = lastname;
+            //this.firstname = firstname;
+            //this.lastname = lastname;
+
+            Firstname = firstname;
+            Lastname = lastname;
+
         }
+
 
                
         
-        //hw9 start
 
-        public bool Equals(ContactData other)
+
+
+
+        public string Firstname { get; set; }
+
+        public string Lastname { get; set; }
+
+        public string Middlename { get; set; } = "";
+
+        public string Nickname { get; set; } = "";
+
+        //public string Title { get; set; } = "";
+
+        //public string Company { get; set; } = "";
+
+        public string Address { get; set; } = "";
+
+        public string HomePhone { get; set; } = "";
+
+        public string MobilePhone { get; set; } = "";
+
+        public string WorkPhone { get; set; } = "";
+
+        public string AllPhones
         {
-            if (Object.ReferenceEquals(other, null))
+            get
             {
-                return false;
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                }
             }
 
-            if (Object.ReferenceEquals(this, other))
+            set { allPhones = value; }
+        }
+
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone == "") //!! стр 40 + дебаг стр 42
             {
-                return true;
+                return "";
             }
 
-            return Firstname == other.Firstname 
-                && Lastname == other.Lastname;
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
         }
 
+        //public string Fax { get; set; } = "";
 
+        public string Email { get; set; } = "";
 
+        public string Email2 { get; set; } = "";
 
-        public override int GetHashCode()
+        public string Email3 { get; set; } = "";
+
+        public string AllEmail
         {
-            return (Firstname + Lastname).GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            return "firstname=" + Firstname + " " + "lastname=" + Lastname;
-
-        }
-
-        public int CompareTo(ContactData other)
-        {
-            if (Object.ReferenceEquals(other, null))
+            get
             {
-                return 1;
+                if (allEmail != null)
+                {
+                    return allEmail;
+                }
+                else
+                {
+                    return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                }
             }
 
-            //return (Firstname + Lastname).CompareTo(other.Firstname + other.Lastname); (до 4.5)
-
-            if (Lastname.CompareTo(other.Lastname) != 0)
-            {
-                return Lastname.CompareTo(other.Lastname);
-            }
-
-            return Firstname.CompareTo(other.Firstname);
+            set { allEmail = value; }
 
         }
 
-        //hw9 end
+        //public string Homepage { get; set; } = "";
+
+        //public string Address2 { get; set; } = "";
+
+        //public string Home2 { get; set; } = "";
+
+        //public string Notes { get; set; } = "";
 
 
 
 
+
+
+
+        //week5 было до 
+        /*
             public string Firstname
             {
                 get { return firstname;}
@@ -191,6 +239,8 @@ namespace WebAddressbookTests
                 set { notes = value; }
             }
 
+        */
+
 
         /*
             public AddressbookDate Birthday
@@ -205,6 +255,64 @@ namespace WebAddressbookTests
             }
 
         */
+
+
+
+
+
+
+        //hw9 start
+
+        public bool Equals(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return Firstname == other.Firstname
+                && Lastname == other.Lastname;
+        }
+
+
+
+
+        public override int GetHashCode()
+        {
+            return (Firstname + Lastname).GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "firstname=" + Firstname + " " + "lastname=" + Lastname;
+
+        }
+
+        public int CompareTo(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+
+            //return (Firstname + Lastname).CompareTo(other.Firstname + other.Lastname); (до 4.5)
+
+            if (Lastname.CompareTo(other.Lastname) != 0)
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
+
+            return Firstname.CompareTo(other.Firstname);
+
+        }
+
+        //hw9 end
+
 
 
     }

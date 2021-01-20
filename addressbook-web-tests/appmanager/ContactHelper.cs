@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
+using System.Text.RegularExpressions; //l5_4
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -20,7 +20,7 @@ namespace WebAddressbookTests
 
 
 
-        public ContactHelper CreateContact(ContactData contact) 
+        public ContactHelper CreateContact(ContactData contact)
         {
             InitNewContactCreation();
             FillContactForm(contact);
@@ -46,7 +46,7 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
             SelectContact();
-            InitContactModification();
+            InitContactModification(0); //hw 11 добавлен 0
             FillContactForm(contact);
             SubmitContactModification();
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
@@ -60,7 +60,8 @@ namespace WebAddressbookTests
 
         public List<ContactData> GetContactList()
 
-        { if (contactCache == null)
+        {
+            if (contactCache == null)
             {
                 contactCache = new List<ContactData>();
 
@@ -137,7 +138,7 @@ namespace WebAddressbookTests
 
 
 
-       // public ContactHelper SelectContact(string v) //неудачный hw9
+        // public ContactHelper SelectContact(string v) //неудачный hw9
         public ContactHelper SelectContact() //hw9
         {
             //!!НЕ ЯСНО, КАК ОН ВЫБРАЛ ЧЕКБОКС? Выбрал ли вообще или проскочил?
@@ -183,12 +184,23 @@ namespace WebAddressbookTests
 
 
 
-
+        /* было ДО нед5
         public ContactHelper InitContactModification()
         {
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            return this;
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click(); 
+            return this; 
         }
+        */
+
+        //нед5
+        public void InitContactModification(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]  //нашли столбец7
+                .FindElement(By.TagName("a")).Click(); //клик по кнопке Edit
+        }
+
+
 
 
         //кажатие кнопки EDIT в контактах...
@@ -196,7 +208,7 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("update")).Click();
             //driver.FindElement(By.XPath("(//input[@name='update'])[1]")).Click();
-            contactCache = null; 
+            contactCache = null;
 
             return this;
         }
@@ -208,5 +220,65 @@ namespace WebAddressbookTests
             return driver.FindElements(By.Name("entry")).Count;
         }
 
+
+
+        //нед6-2
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"));
+
+            string lastName = cells[1].Text;
+            string firstName = cells[2].Text;
+            string address = cells[3].Text;
+            string allEmail = cells[4].Text;
+            string allPhones = cells[5].Text;
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                AllPhones = allPhones,
+                AllEmail = allEmail
+            };
+        }
+
+
+
+
+
+
+        //нед6
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(0);
+
+
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                HomePhone = homePhone,
+                MobilePhone = mobilePhone,
+                WorkPhone = workPhone,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
+            };
+
+        }
     }
 }
