@@ -31,6 +31,7 @@ namespace WebAddressbookTests
 
 
         //v ???
+        //public ContactHelper Remove(v)+++?? RemoveContact(v)
         public ContactHelper Remove()
         {
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
@@ -246,6 +247,7 @@ namespace WebAddressbookTests
 
 
         public string GetContactInformationFromDetails()
+        //public ContactData GetContactInformationFromDetails()
         {
             manager.Navigator.GoToHomePage();
             ShowContactDetails(0);
@@ -261,8 +263,6 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             InitContactModification(0);
-
-
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
