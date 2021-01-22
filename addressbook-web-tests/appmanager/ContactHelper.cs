@@ -236,6 +236,7 @@ namespace WebAddressbookTests
             string address = cells[3].Text;
             string allEmail = cells[4].Text; //номер столбца "все почты" WH11
             string allPhones = cells[5].Text;
+            //string allPhones = cells[6].Text;
 
             return new ContactData(firstName, lastName)
             {
@@ -288,16 +289,18 @@ namespace WebAddressbookTests
 
 
 
-            //hw12
-            //public void ShowContactDetails(int index)
-            public void ShowContactDetails(int index)
 
-            {
-                driver.FindElements(By.Name("entry"))[index]
-                    .FindElements(By.TagName("td"))[6]
-                    .FindElement(By.TagName("a")).Click();
-            }
 
+        }
+
+        //hw12
+        //public void ShowContactDetails(int index)
+        public void ShowContactDetails(int index1)
+
+        {
+            driver.FindElements(By.Name("entry"))[index1]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
         }
     }
 }
