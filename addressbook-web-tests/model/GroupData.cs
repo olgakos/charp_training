@@ -32,7 +32,9 @@ namespace WebAddressbookTests
         //l4_m3 
         public override string ToString()
         {
-            return "name=" + Name;
+            //return "name=" + Name; //before HW13
+            return "name=" + Name + "\nheader= " + Header + "\nfooter= " + Footer;
+
         }
 
 

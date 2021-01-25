@@ -35,7 +35,7 @@ namespace WebAddressbookTests
             if (text != null)
 
             {
-                driver.FindElement(locator).Click();
+                //driver.FindElement(locator).Click();
                 driver.FindElement(locator).Clear();
                 driver.FindElement(locator).SendKeys(text);
             }

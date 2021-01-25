@@ -20,7 +20,7 @@ namespace WebAddressbookTests
             {
                 ContactData contact = new ContactData("Ringo2", "Starr");
                 contact.Middlename = "Richard";
-                contact.Nickname = "4";
+                //contact.Nickname = "4";
 
 
                 app.Contacts.CreateContact(contact);
@@ -31,7 +31,7 @@ namespace WebAddressbookTests
 
             ContactData newData = new ContactData("Ringo", "Starr");
             newData.Middlename = null; // т.е поле менять не будем...
-            newData.Nickname = null; // т.е поле менять не будем...
+            //newData.Nickname = null; // т.е поле менять не будем...
 
 
 

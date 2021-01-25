@@ -151,21 +151,21 @@ namespace WebAddressbookTests
 
 
 
-        /* Новая версия HW 10, не работает в паре с залогином 
+
         public ContactHelper RemoveContact() //нажать кнопк. удалить контакт + согласие
         {
             //acceptNextAlert = false; //алерт сейчас НЕ открыт (true)
             //acceptNextAlert = true; //алерт сейчас НЕ открыт (true)
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click(); //нашли-нажали delete
             //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
-            //driver.SwitchTo().Alert().Accept(); //new hw10 закрыть окно подтвержления удаления 
+            driver.SwitchTo().Alert().Accept(); //new hw10 закрыть окно подтвержления удаления 
             driver.FindElement(By.CssSelector("div.msgbox")); //new hw10 подождать сообщения об успешном удалении контакта 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2); //ожидлание
             contactCache = null;
             return this;
         }
 
-        */
+ 
 
 
 
@@ -206,6 +206,8 @@ namespace WebAddressbookTests
                 .FindElements(By.TagName("td"))[7]  //нашли столбец7
                 .FindElement(By.TagName("a")).Click(); //клик по кнопке Edit
         }
+
+
 
 
 

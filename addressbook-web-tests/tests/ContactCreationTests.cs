@@ -8,10 +8,54 @@ using NUnit.Framework;
 namespace WebAddressbookTests 
 {
     [TestFixture]
-    public class ContactCreationTest : AuthTestBase //L3_3
+    public class ContactCreationTests : AuthTestBase //L3_3
     {
        [Test]
-        public void TheContactCreationTest()
+        public void ContactCreationTest()
+
+        { }
+            public static IEnumerable<ContactData> RandomContactDataProvider()            
+        {
+            List<ContactData> contacts = new List<ContactData>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                contacts.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30))
+                {
+                    Address = GenerateRandomString(30),
+                    HomePhone = GenerateRandomString(30),
+                    MobilePhone = GenerateRandomString(30),
+                    WorkPhone = GenerateRandomString(30),
+                    Email = GenerateRandomString(30),
+                    Email2 = GenerateRandomString(30),
+                    Email3 = GenerateRandomString(30)
+                });
+            }
+
+            return contacts;
+        }
+
+
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreationTest(ContactData contact)
+        {
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+
+            app.Contacts.CreateContact(contact);
+
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+        }
+
+
+
+        /*
+
         {
             //залогин теперь в ТБ в SetUp 2_4
             ContactData contact = new ContactData("John", "Lennon");
@@ -49,6 +93,9 @@ namespace WebAddressbookTests
             app.Contacts.CreateContact(contact);
             //app.Auth.LogOut();
         }
+
+
+        */
 
     }
 }

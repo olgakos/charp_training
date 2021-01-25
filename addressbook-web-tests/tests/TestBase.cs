@@ -17,11 +17,26 @@ namespace WebAddressbookTests
         public void SetupAplicationmanager() //L3_3 переименвали
         {
             app = ApplicationManager.GetInstance(); //3_2
-            //app.Auth.Login(new AccountData("admin", "secret")); уехал в 3_3
         }
 
 
-       // [TearDown]уехало в ТСФ 3_2
+        //HW 13 ниже
+        public static Random rnd = new Random();
+
+        public static string GenerateRandomString(int max)
+        {
+            int l = Convert.ToInt32(rnd.NextDouble() * max);
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < l; i++)
+            {
+                builder.Append(Convert.ToChar(32 + Convert.ToInt32(rnd.NextDouble() * 223)));
+            }
+
+            return builder.ToString();
+        }
+
+
 
 
     }

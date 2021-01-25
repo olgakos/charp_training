@@ -9,10 +9,10 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactRemovalTest : AuthTestBase //L3_3
+    public class ContactRemovalTests : AuthTestBase //L3_3
     {
         [Test]
-        public void TheContactRemovalTest()
+        public void ContactRemovalTest()
         {
 
             //з8_1 правка начало
@@ -20,8 +20,27 @@ namespace WebAddressbookTests
             {
                 ContactData contact = new ContactData("Ringo2", "Starr");
                 contact.Middlename = "Richard";
-                contact.Nickname = "4";
-                //список пунктов можно продолжить...
+                //contact.Nickname = "4";
+                //contact.Title = "Title";
+                //contact.Company = "Company";
+                contact.Address = "ddress";
+                contact.HomePhone = "HomePhone";
+                contact.MobilePhone = "MobilePhone";
+                contact.WorkPhone = "WorkPhone";
+                //contact.Fax = "123";
+                contact.Email = "ppp";
+                contact.Email2 = "aaa";
+                contact.Email3 = "ddd";
+                //contact.Homepage = "ccc";
+                //contact.Address2 = "bbb";
+                //contact.Home2 = "kkk";
+                //contact.Notes = "lll";
+                //contact.Birthday.Day = "1";
+                //contact.Birthday.Month = "Jule";
+                //contact.Birthday.Year = "1940";
+                //contact.Anniversary.Day = "7";
+                //contact.Anniversary.Month = "Jule";
+                //contact.Anniversary.Year = "2021";
 
                 app.Contacts.CreateContact(contact);
             }
@@ -35,7 +54,7 @@ namespace WebAddressbookTests
 
             //app.Contacts.Remove("selected[]");
             app.Contacts.Remove();
-            app.Contacts.Wait(TimeSpan.FromSeconds(oldContacts.Count * 4));
+            app.Contacts.Wait(TimeSpan.FromSeconds(oldContacts.Count * 4)); ;
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
 
