@@ -54,7 +54,7 @@ namespace WebAddressbookTests
 
             //app.Contacts.Remove("selected[]");
             app.Contacts.Remove();
-            app.Contacts.Wait(TimeSpan.FromSeconds(oldContacts.Count * 4)); ;
+            //app.Contacts.Wait(TimeSpan.FromSeconds(oldContacts.Count * 4)); ; //лишняя строка
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
 
