@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "addressbook-web-tests", "addressbook-web-tests.csproj", "{CE2FD51D-4191-4720-B36F-01D3161B8A9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "addressbook-test-data-generators", "addressbook-test-data-generators\addressbook-test-data-generators.csproj", "{3DF6FEB9-9CD4-4133-A3E2-538805EC7630}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE2FD51D-4191-4720-B36F-01D3161B8A9B} = {CE2FD51D-4191-4720-B36F-01D3161B8A9B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

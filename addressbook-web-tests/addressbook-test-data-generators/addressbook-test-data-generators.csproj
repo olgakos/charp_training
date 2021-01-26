@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\addressbook-web-tests.csproj">
+      <Project>{ce2fd51d-4191-4720-b36f-01d3161b8a9b}</Project>
+      <Name>addressbook-web-tests</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
