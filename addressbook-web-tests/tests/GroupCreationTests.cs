@@ -9,6 +9,7 @@ using System.IO; //неделя 6_1
 using System.Xml; //6_3
 using System.Xml.Serialization; //6_3
 using Newtonsoft.Json; //6_3
+using Excel = Microsoft.Office.Interop.Excel; //6_4
 
 
 namespace WebAddressbookTests
@@ -35,7 +36,7 @@ namespace WebAddressbookTests
 
 
         //public static IEnumerable<GroupData> GroupDataFromFile() //6_1
-        public static IEnumerable<GroupData> GroupDataFromCvsFile()
+        public static IEnumerable<GroupData> GroupDataFromCsvFile() //fix
         {
             List<GroupData> groups = new List<GroupData>();
 
@@ -57,8 +58,6 @@ namespace WebAddressbookTests
             return groups;
         }
 
-
-
         public static IEnumerable<GroupData> GroupDataFromXmlFile() // 6_2 с новым юзингом System.Xml.Serialization
         {
 
@@ -68,7 +67,7 @@ namespace WebAddressbookTests
 
         }
 
-        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        public static IEnumerable<GroupData> GroupDataFromJsonFile() // 6_3
         {
             return JsonConvert.DeserializeObject<List<GroupData>>(
                 File.ReadAllText(@"groups.json"));
@@ -77,8 +76,41 @@ namespace WebAddressbookTests
 
 
 
+
+
+        //эксель
+        public static IEnumerable<GroupData> GroupDataFromExcelFile()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            Excel.Application app = new Excel.Application();
+            Excel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"groups.xlsx"));
+            Excel.Worksheet sheet = wb.ActiveSheet;
+            Excel.Range range = sheet.UsedRange;
+
+            for (int i = 1; i <= range.Rows.Count; i++)
+            {
+                groups.Add(new GroupData()
+                {
+                    Name = range.Cells[i, 1].Value,
+                    Header = range.Cells[i, 2].Value,
+                    Footer = range.Cells[i, 3].Value
+                });
+            }
+
+            wb.Close();
+            app.Visible = false;
+            app.Quit();
+
+            return groups;
+        }
+
+
+
         //[Test, TestCaseSource("GroupDataFromFile")] //6_1будет брать данные из файла
-        [Test, TestCaseSource("GroupDataFromJsonFile")] //будет брать данные из файла JSON
+        //[Test, TestCaseSource("GroupDataFromJsonFile")] //будет брать данные из файла JSON
+        [Test, TestCaseSource("GroupDataFromExcelFile")] //будет брать данные из файла Эксель
+
+
         public void GroupCreationTest(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
@@ -93,6 +125,8 @@ namespace WebAddressbookTests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
+
+
 
 
 
