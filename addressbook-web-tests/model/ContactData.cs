@@ -37,6 +37,15 @@ namespace WebAddressbookTests
         //private string AddressbookDate anniversary = new AddressbookDate("", "", "");
 
         //КОНСТРУКТОР обязательного поля name, НЕ НАДО ставить ";"
+
+
+        //для ДЗ 14 -пустое 
+        public ContactData()
+        {
+        }
+
+
+        // this. или нет?...
         public ContactData (string firstname, string lastname)
         {
             //this.firstname = firstname;

@@ -37,6 +37,9 @@ namespace WebAddressbookTests
 
 
         [Test, TestCaseSource("RandomContactDataProvider")]
+        //[Test, TestCaseSource("ContactDataFromCsvFile")] //будет брать данные из файла
+        //[Test, TestCaseSource("ContactDataFromFile")] //будет брать данные из файла
+
         public void ContactCreationTest(ContactData contact)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
