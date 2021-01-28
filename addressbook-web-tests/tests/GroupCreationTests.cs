@@ -5,7 +5,10 @@ using System.Threading;
 using NUnit.Framework;
 //юзинг Селеним переехал в ТБ 2_1
 using System.Collections.Generic; //неделя4
-using System.IO; //неделя6
+using System.IO; //неделя 6_1
+using System.Xml; //6_3
+using System.Xml.Serialization; //6_3
+using Newtonsoft.Json; //6_3
 
 
 namespace WebAddressbookTests
@@ -31,7 +34,8 @@ namespace WebAddressbookTests
         }
 
 
-        public static IEnumerable<GroupData> GroupDataFromFile()
+        //public static IEnumerable<GroupData> GroupDataFromFile() //6_1
+        public static IEnumerable<GroupData> GroupDataFromCvsFile()
         {
             List<GroupData> groups = new List<GroupData>();
 
@@ -55,11 +59,26 @@ namespace WebAddressbookTests
 
 
 
+        public static IEnumerable<GroupData> GroupDataFromXmlFile() // 6_2 с новым юзингом System.Xml.Serialization
+        {
+
+            return (List<GroupData>)
+                new XmlSerializer(typeof(List<GroupData>))
+                .Deserialize(new StreamReader(@"groups.xml"));
+
+        }
+
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<GroupData>>(
+                File.ReadAllText(@"groups.json"));
+        }
 
 
 
 
-        [Test, TestCaseSource("GroupDataFromFile")] //будет брать данные из файла
+        //[Test, TestCaseSource("GroupDataFromFile")] //6_1будет брать данные из файла
+        [Test, TestCaseSource("GroupDataFromJsonFile")] //будет брать данные из файла JSON
         public void GroupCreationTest(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
