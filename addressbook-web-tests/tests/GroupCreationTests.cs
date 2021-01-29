@@ -107,8 +107,8 @@ namespace WebAddressbookTests
 
 
         //[Test, TestCaseSource("GroupDataFromFile")] //6_1будет брать данные из файла
-        //[Test, TestCaseSource("GroupDataFromJsonFile")] //будет брать данные из файла JSON
-        [Test, TestCaseSource("GroupDataFromExcelFile")] //будет брать данные из файла Эксель
+        [Test, TestCaseSource("GroupDataFromJsonFile")] //будет брать данные из файла JSON
+        //[Test, TestCaseSource("GroupDataFromExcelFile")] //будет брать данные из файла Эксель
 
 
         public void GroupCreationTest(GroupData group)

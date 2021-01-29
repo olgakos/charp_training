@@ -4,17 +4,20 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections.Generic; //4_1 List
 using NUnit.Framework;
+using System.IO;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace WebAddressbookTests 
 {
     [TestFixture]
     public class ContactCreationTests : AuthTestBase //L3_3
     {
-       [Test]
-        public void ContactCreationTest()
-
-        { }
-            public static IEnumerable<ContactData> RandomContactDataProvider()            
+        //[Test]
+        //public void ContactCreationTest()
+        //{ }
+        public static IEnumerable<ContactData> RandomContactDataProvider()
+        //public static IEnumerable<ContactData> ContactDataFromXmlFile()
         {
             List<ContactData> contacts = new List<ContactData>();
 
@@ -35,8 +38,27 @@ namespace WebAddressbookTests
             return contacts;
         }
 
+        //hw15
+        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        {
 
-        [Test, TestCaseSource("RandomContactDataProvider")]
+            return (List<ContactData>)
+                new XmlSerializer(typeof(List<ContactData>))
+                    .Deserialize(new StreamReader(@"contacts.xml"));
+        }
+
+        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<ContactData>>(
+                File.ReadAllText(@"contacts.json"));
+        }
+
+
+
+
+
+        //[Test, TestCaseSource("RandomContactDataProvider")] //hw15
+        [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void ContactCreationTest(ContactData contact)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
