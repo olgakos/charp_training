@@ -82,7 +82,17 @@ namespace WebAddressbookTests
         }
 
 
+        public GroupHelper Remove(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
 
+            SelectGroup(group.Id);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        // до  7_2
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
@@ -117,6 +127,12 @@ namespace WebAddressbookTests
             return this;
         }
 
+        //7_2
+        public GroupHelper SelectGroup(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            return this;
+        }
 
         public GroupHelper InitNewGroupCreation()
         {
@@ -162,6 +178,10 @@ namespace WebAddressbookTests
             groupCache = null; //4_5
             return this;
         }
+
+
+
+
 
 
 

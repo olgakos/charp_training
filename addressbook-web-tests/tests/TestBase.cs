@@ -11,7 +11,8 @@ namespace WebAddressbookTests
     {
         //ссылка на место хранения ссылок на помощников вместо них самих
        
-        protected ApplicationManager app;
+        protected ApplicationManager app; //7-1
+        public static bool PERFORM_LONG_UI_CHECKS = true; //7_2
 
         [SetUp]
         public void SetupAplicationmanager() //L3_3 переименвали

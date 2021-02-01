@@ -9,7 +9,8 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupRemovalTests : AuthTestBase //L3_3
+    // public class GroupRemovalTests : AuthTestBase //L3_3
+        public class GroupRemovalTests : GroupTestBase //7_2
     {
         
     [Test]
@@ -27,13 +28,12 @@ namespace WebAddressbookTests
             }
             //конец поверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList(); //4_3
-            app.Groups.Remove(0);  
-            Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount()); //4_5
-            List<GroupData> newGroups = app.Groups.GetGroupList(); //4_3
-
-            //ниже и до конца- правки из 4_5 
+            //7_2
+            List<GroupData> oldGroups = GroupData.GetAll();
             GroupData toBeRemoved = oldGroups[0];
+            app.Groups.Remove(toBeRemoved);  
+            Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount()); //4_5
+            List<GroupData> newGroups = GroupData.GetAll();
 
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);
