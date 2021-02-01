@@ -10,7 +10,8 @@ using System.Xml; //6_3
 using System.Xml.Serialization; //6_3
 using Newtonsoft.Json; //6_3
 using Excel = Microsoft.Office.Interop.Excel; //6_4
-
+using System.Linq; //7_1
+ 
 
 namespace WebAddressbookTests
 {
@@ -127,6 +128,19 @@ namespace WebAddressbookTests
         }
 
 
+        [Test] //7_1
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<GroupData> fromDb = GroupData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
 
 
 
