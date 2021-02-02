@@ -131,7 +131,7 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups, newGroups);
         }
 
-
+        /* //было ДО 7_3
         [Test] //7_1
         public void TestDBConnectivity()
         {
@@ -146,6 +146,19 @@ namespace WebAddressbookTests
             System.Console.Out.WriteLine(end.Subtract(start));
         }
 
+        */
+
+        [Test] //7_3
+        public void TestDBConnectivity()
+        {
+            foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
+            { 
+                //System.Console.Out.WriteLine(end.Subtract(start));
+                System.Console.Out.WriteLine(contact);
+            }
+
+        }       
+       
 
 
         /*
