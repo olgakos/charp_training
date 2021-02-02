@@ -29,9 +29,17 @@ namespace WebAddressbookTests
             return this;
         }
 
+        /*
+        public ContactHelper Remove(string v)
+        {
+            SelectContact(v);
+            RemoveContact();
+            return this;
+        }
 
-        //v ???
-        //public ContactHelper Remove(v)+++?? RemoveContact(v)
+
+        //до HW16
+       
         public ContactHelper Remove()
         {
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
@@ -39,11 +47,31 @@ namespace WebAddressbookTests
             RemoveContact(); // кнопка "удалить (контакт)" +  алерт + подтверждение
             //ConfirmRemoval(); // алерт + подтверждение
             manager.Navigator.GoToHome();
+            return this;
+        }
+        */
 
+
+        public ContactHelper Remove(string v)
+        {
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+            SelectContact(v);
+            RemoveContact();
             return this;
         }
 
-        public ContactHelper Modify(ContactData contact)
+        public ContactHelper Remove(ContactData contact)
+        {
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+            SelectContact(contact.Id);
+            RemoveContact();
+            return this;
+        }
+
+
+
+        /*
+        public ContactHelper Modify(ContactData contact, ContactData newData)
         {
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
             SelectContact();
@@ -52,6 +80,17 @@ namespace WebAddressbookTests
             SubmitContactModification();
             manager.Navigator.GoToHome();//точно-точно перейти на список контактов
 
+            return this;
+        }
+        */
+
+        public ContactHelper Modify(ContactData contact, ContactData newData)
+        {
+            manager.Navigator.GoToHome();//точно-точно перейти на список контактов
+            InitContactModification(contact.Id);
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnToHomePage();
             return this;
         }
 
@@ -139,6 +178,7 @@ namespace WebAddressbookTests
 
 
 
+        /*
         // public ContactHelper SelectContact(string v) //неудачный hw9
         public ContactHelper SelectContact() //hw9
         {
@@ -148,10 +188,20 @@ namespace WebAddressbookTests
             //driver.FindElement(By.Name(v)).Click();  //неудачный ДЗ9
             return this;
         }
+        */
+
+
+        //HW16
+        public ContactHelper SelectContact(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            return this;
+        }
 
 
 
 
+        //NB16
         public ContactHelper RemoveContact() //нажать кнопк. удалить контакт + согласие
         {
             //acceptNextAlert = false; //алерт сейчас НЕ открыт (true)
@@ -207,6 +257,11 @@ namespace WebAddressbookTests
                 .FindElement(By.TagName("a")).Click(); //клик по кнопке Edit
         }
 
+
+        public void InitContactModification(String id)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])['" + id + "']")).Click();
+        }
 
 
 

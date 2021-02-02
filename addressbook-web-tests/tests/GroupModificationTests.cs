@@ -9,7 +9,6 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    //public class GroupModificationTests : AuthTestBase //L3_3
     public class GroupModificationTests : GroupTestBase //7_2
     {
         [Test]
@@ -25,9 +24,6 @@ namespace WebAddressbookTests
                 group.Footer = "ABBA_f";
                 app.Groups.CreateGroup(group);
             }
-            //конец 8_1конец^ поверка, что имеется хотя бы одна группа в наличии, а если нету то создать ее
-
-
 
 
             GroupData newData = new GroupData("modify zzz");
@@ -56,6 +52,8 @@ namespace WebAddressbookTests
                     Assert.AreEqual(newData.Name, group.Name);
                 }
             }
+
+
 
 
         }

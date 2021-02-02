@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactRemovalTests : AuthTestBase //L3_3
+    public class ContactRemovalTests : ContactTestBase //L3_3
     {
         [Test]
         public void ContactRemovalTest()
@@ -45,20 +45,27 @@ namespace WebAddressbookTests
                 app.Contacts.CreateContact(contact);
             }
 
+            /*до HW16
             //з8_1 правка конец
-
-
-            //app.Contacts.Remove(); //было ранее11
-
+                        //app.Contacts.Remove(); //было ранее11
             List<ContactData> oldContacts = app.Contacts.GetContactList();
-
             //app.Contacts.Remove("selected[]");
             app.Contacts.Remove();
             //app.Contacts.Wait(TimeSpan.FromSeconds(oldContacts.Count * 4)); ; //лишняя строка
+            */
+
+
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData toBeRemoved = oldContacts[0];
+            //app.Contacts.Remove();
+            app.Contacts.Remove("selected[]");
+            app.Contacts.Remove(toBeRemoved);
+            //app.Contacts.Wait(TimeSpan.FromSeconds(oldContacts.Count * 4)); ; //лишняя строка
+
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
 
             oldContacts.RemoveAt(0);
             oldContacts.Sort();
