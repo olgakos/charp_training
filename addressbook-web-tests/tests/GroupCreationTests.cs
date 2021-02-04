@@ -162,7 +162,7 @@ namespace WebAddressbookTests
         */
 
 
-
+        /* //до hw17
         [Test]
         public void TestDBConnectivity() //ver 7_4
         {    
@@ -171,6 +171,15 @@ namespace WebAddressbookTests
                 System.Console.Out.WriteLine(contact.Deprecated);
             }
         }
+        */
+
+
+        [Test] //hw17
+        public void TestDBConnectivity() 
+        {
+        }
+
+
 
 
         /*
