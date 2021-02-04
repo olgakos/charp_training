@@ -148,6 +148,7 @@ namespace WebAddressbookTests
 
         */
 
+        /*
         [Test] //7_3
         public void TestDBConnectivity()
         {
@@ -157,8 +158,19 @@ namespace WebAddressbookTests
                 System.Console.Out.WriteLine(contact);
             }
 
-        }       
-       
+        }
+        */
+
+
+
+        [Test]
+        public void TestDBConnectivity() //ver 7_4
+        {    
+            foreach (ContactData contact in ContactData.GetAll())
+            {
+                System.Console.Out.WriteLine(contact.Deprecated);
+            }
+        }
 
 
         /*
