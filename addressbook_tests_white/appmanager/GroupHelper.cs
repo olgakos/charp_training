@@ -9,7 +9,7 @@ using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.TreeItems;
 using TestStack.White.UIItems.WindowItems;
-//using System.Windows.Automation;
+using System.Windows.Automation;
 using TestStack.White.WindowsAPI;
 
 namespace addressbook_tests_white
