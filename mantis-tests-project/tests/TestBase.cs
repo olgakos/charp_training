@@ -13,15 +13,16 @@ namespace mantis_tests_project
        
         protected ApplicationManager app; //7-1
         //public static bool PERFORM_LONG_UI_CHECKS = true; //7_2
-        public static bool PERFORM_LONG_UI_CHECKS = false; //7_2
+        //public static bool PERFORM_LONG_UI_CHECKS = false; //7_2
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void SetupApplicationManager() //L3_3 переименвали
         {
             app = ApplicationManager.GetInstance(); //3_2
         }
 
 
+        /*
         //HW 13 ниже
         public static Random rnd = new Random();
 
@@ -39,6 +40,7 @@ namespace mantis_tests_project
             return builder.ToString();
         }
 
+        */
 
 
 

@@ -18,6 +18,10 @@ namespace mantis_tests_project
         //public RegistrationHelper Registration { get; set; }
         //public FtpHelper Ftp { get; set; }
         //новые методы сюда
+        protected LoginHelper loginHelper;
+        //public LoginHelper loginHelper;
+        public ManagementMenuHelper managementMenu;
+        public ProjectManagementHelper managementProject;
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -28,6 +32,9 @@ namespace mantis_tests_project
             //Registration = new RegistrationHelper(this);
             //Ftp = new FtpHelper(this);
             //новые методы сюда
+            loginHelper = new LoginHelper(this);
+            managementMenu = new ManagementMenuHelper(this, baseURL);
+            managementProject = new ProjectManagementHelper(this);
         }
 
 
@@ -48,7 +55,8 @@ namespace mantis_tests_project
             if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.driver.Url = "http://localhost/mantisbt-2.24.2/login_page.php";
+                //newInstance.driver.Url = "http://localhost/mantisbt-2.24.2/login_page.php";
+                newInstance.ManagementMenu.GoToHomePage();
                 app.Value = newInstance;
             }
             return app.Value;
@@ -58,5 +66,24 @@ namespace mantis_tests_project
         {
             get { return driver; }
         }
+
+
+
+        public LoginHelper Auth
+        {
+            get { return loginHelper; }
+        }
+
+        public ManagementMenuHelper ManagementMenu
+        {
+            get { return managementMenu; }
+        }
+
+        public ProjectManagementHelper ManagementProject
+        {
+            get { return managementProject; }
+        }
+
+
     }
 }

@@ -64,7 +64,12 @@
   <ItemGroup>
     <Compile Include="appmanager\ApplicationManager.cs" />
     <Compile Include="appmanager\HelperBase.cs" />
+    <Compile Include="appmanager\LoginHelper.cs" />
+    <Compile Include="appmanager\ManagementMenuHelper.cs" />
+    <Compile Include="appmanager\ProjectManagementHelper.cs" />
     <Compile Include="model\AccountData.cs" />
+    <Compile Include="tests\AuthTestBase.cs" />
+    <Compile Include="tests\LoginTest.cs" />
     <Compile Include="tests\ProjectCreatingTest.cs" />
     <Compile Include="tests\ProjectRemovalTest.cs" />
     <Compile Include="tests\TestBase.cs" />
