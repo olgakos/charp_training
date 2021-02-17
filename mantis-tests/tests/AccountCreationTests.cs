@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using System.IO;
+using System.Web; //м10л1
+
+
 
 namespace mantis_tests
 {
@@ -26,12 +29,20 @@ namespace mantis_tests
         {
             AccountData account = new AccountData()
             {
-                Name = "testuser",
+                Name = "testuser5",
                 Password = "password",
-                Email = "testuser@localhost.localdomain"
+                Email = "testuser5@localhost.localdomain"
             };
 
-            app.Registration.Register(account);
+            List<AccountData> accounts = app.Admin.GetAllAccounts();
+            AccountData existingAccount = accounts.Find(x => x.Name == account.Name);
+            if (existingAccount != null) //удаляем ЕСЛИ есть что удалять
+            {
+                app.Admin.DeleteAccount(existingAccount);
+            }
+
+            //app.Admin.DeleteAccount(account);
+            app.Registration.Register(account); //регитсрация аккаунта
         }
 
         [TestFixtureTearDown]
