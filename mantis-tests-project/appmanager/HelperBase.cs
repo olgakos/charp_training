@@ -16,11 +16,7 @@ namespace mantis_tests_project
         protected bool acceptNextAlert;
 
         
-        //hw9 ОЖИДАНИЕ
-        public void Wait(TimeSpan timeSpan)
-        { driver.Manage().Timeouts().ImplicitWait = timeSpan;}
- 
-     
+    
 
         public HelperBase(ApplicationManager manager) {
             this.manager = manager;
@@ -41,8 +37,11 @@ namespace mantis_tests_project
             }
         }
 
-
-
+        //ожидание для
+        public void Wait(TimeSpan timeSpan)
+        {
+            driver.Manage().Timeouts().ImplicitWait = timeSpan;
+        }
 
 
 

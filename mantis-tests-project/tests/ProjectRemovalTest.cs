@@ -13,6 +13,19 @@ namespace mantis_tests_project
         [Test]
         public void ProjectRemoveTest()
         {
+
+            //проверка на "Для теста удаления проектов реализуйте также проверку предусловий (что хотя бы один проект присутствует в приложении)."
+            app.ManagementMenu.GoToManagePage();
+            app.ManagementMenu.GoToManageProjectTab();
+
+            if (app.ManagementProject.GetProjectList().Count == 0)
+            {
+                string project = "projectTest";
+                app.ManagementProject.Create(project);
+                app.ManagementProject.Wait(TimeSpan.FromSeconds(7));//ожидание
+            }
+            //конец проверки
+
             List<string> oldProjects = app.ManagementProject.GetProjectList();
 
             app.ManagementProject.Remove();
