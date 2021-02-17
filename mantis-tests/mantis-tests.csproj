@@ -75,12 +75,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="appmanager\AdminHelper .cs" />
+    <Compile Include="appmanager\APIHelper.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
     <Compile Include="appmanager\FtpHelper.cs" />
     <Compile Include="appmanager\HelperBase.cs" />
     <Compile Include="appmanager\RegistrationHelper.cs" />
     <Compile Include="model\AccountData.cs" />
+    <Compile Include="model\IssueData.cs" />
+    <Compile Include="model\ProjectData.cs" />
     <Compile Include="tests\AccountCreationTests.cs" />
+    <Compile Include="tests\AddNewIssue.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,7 +92,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="config_inc.php" />
   </ItemGroup>

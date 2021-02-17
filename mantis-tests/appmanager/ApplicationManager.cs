@@ -18,6 +18,7 @@ namespace mantis_tests
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get; set; }
         public AdminHelper Admin { get; set; } //m10 l1 проперти
+        public APIHelper API { get; private set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -29,7 +30,7 @@ namespace mantis_tests
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             Admin = new AdminHelper(this, baseURL); //+baseURL как параметр
-
+            API = new APIHelper(this);
 
 
         }
