@@ -57,7 +57,7 @@ namespace addressbook_tests_white
 
             CloseGroupsDialogue(dialogue);
         }
-
+        //hw18 уделить графическую группу.fin
 
 
 
@@ -74,12 +74,14 @@ namespace addressbook_tests_white
             CloseGroupsDialogue(dialogue);
         }
 
-        private void CloseGroupsDialogue(Window dialogue)
+        //private void CloseGroupsDialogue(Window dialogue)
+        public void CloseGroupsDialogue(Window dialogue)
         {
             dialogue.Get<Button>("uxCloseAddressButton").Click();
         }
 
-        private Window OpenGroupsDialogue()
+        //private Window OpenGroupsDialogue()
+        public Window OpenGroupsDialogue()
         {
             manager.MainWindow.Get<Button>("groupButton").Click();
             return manager.MainWindow.ModalWindow(GROUPWINTITLE);
