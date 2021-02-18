@@ -26,7 +26,7 @@ namespace mantis_tests
         {
             driver = new FirefoxDriver();
             //baseURL = "http://localhost/addressbook";
-            baseURL = "http://localhost/mantisbt-2.24.2"; //в лекции  версия 1.2.17
+            baseURL = "http://localhost/mantisbt-2.24.4"; //в лекции  версия 1.2.17
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             Admin = new AdminHelper(this, baseURL); //+baseURL как параметр

@@ -7,7 +7,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using SimpleBrowser.WebDriver;
 using System.Text.RegularExpressions;
-//using mantis_tests.Mantis;
+using mantis_tests.Mantis; // важно! Если красный, перезапусти ссыль в Ref Serv
 
 namespace mantis_tests
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using mantis_tests.Mantis;
+using mantis_tests.Mantis;
 using NUnit.Framework;
 
 namespace mantis_tests

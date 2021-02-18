@@ -15,7 +15,9 @@ namespace mantis_tests
         //public static bool PERFORM_LONG_UI_CHECKS = true; //7_2
         public static bool PERFORM_LONG_UI_CHECKS = false; //7_2
 
-        [TestFixtureSetUp]
+        //[TestFixture]
+        //[TestFixtureSetUp]
+
         public void SetupApplicationManager() //L3_3 переименвали
         {
             app = ApplicationManager.GetInstance(); //3_2
