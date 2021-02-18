@@ -17,8 +17,8 @@ namespace mantis_tests_project
         public ProjectManagementHelper Create(string project)
         {
 
-            manager.ManagementMenu.GoToManagePage();
-            manager.ManagementMenu.GoToManageProjectTab();
+            //manager.ManagementMenu.GoToManagePage();
+            //manager.ManagementMenu.GoToManageProjectTab();
             InitProjectCreation();
             FillProjectName(project);
             AddProject();

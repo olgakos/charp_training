@@ -28,7 +28,7 @@ namespace mantis_tests_project
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/mantisbt-2.24.2/login_page.php";
+            baseURL = "http://localhost/mantisbt-2.24.4/login_page.php";
             //Registration = new RegistrationHelper(this);
             //Ftp = new FtpHelper(this);
             //новые методы сюда
@@ -55,7 +55,7 @@ namespace mantis_tests_project
             if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                //newInstance.driver.Url = "http://localhost/mantisbt-2.24.2/login_page.php";
+                //newInstance.driver.Url = "http://localhost/mantisbt-2.24.4/login_page.php";
                 newInstance.ManagementMenu.GoToHomePage();
                 app.Value = newInstance;
             }

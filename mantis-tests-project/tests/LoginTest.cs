@@ -8,12 +8,13 @@ using NUnit.Framework;
 namespace mantis_tests_project
 {
     [TestFixture]
+    //[SetUp]
     public class LoginTests : TestBase
     {
         [Test]
         public void LoginWithValidCredentials()
         {
-            //prepare
+
 
 
             //action
