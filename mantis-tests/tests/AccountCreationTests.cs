@@ -4,7 +4,7 @@ using System.Text;
 using NUnit.Framework;
 using System.IO;
 using System.Web; //м10л1
-
+using System.Net.FtpClient;
 
 
 namespace mantis_tests
@@ -15,7 +15,8 @@ namespace mantis_tests
     {
 
         //[TestFixtureSetUp]
-        [SetUp]
+        //[TestFixture]
+       [SetUp]
         public void setUpConfig()
         {
             app.Ftp.BackupFile("/config_inc.php");

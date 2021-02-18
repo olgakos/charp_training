@@ -47,7 +47,8 @@ namespace mantis_tests_project
 
         public ProjectManagementHelper AddProject()
         {
-            driver.FindElement(By.XPath("//input[@value='Add Project']")).Click();
+            //driver.FindElement(By.XPath("//input[@value='Add Project']")).Click();
+            driver.FindElement(By.XPath("//input[@value='Добавить проект']")).Click();
             return this;
         }
 
@@ -55,8 +56,8 @@ namespace mantis_tests_project
         {
             List<string> projects = new List<string>();
 
-            manager.ManagementMenu.GoToManagePage();
-            manager.ManagementMenu.GoToManageProjectTab();
+            //manager.ManagementMenu.GoToManagePage(); //22
+            //manager.ManagementMenu.GoToManageProjectTab(); //22
 
             ICollection<IWebElement> elements = driver.FindElement(By.ClassName("table"))
                 .FindElements(By.TagName("tr")).Skip(1).Select(p => p.FindElement(By.TagName("td")).FindElement(By.TagName("a"))).ToArray();
@@ -77,13 +78,15 @@ namespace mantis_tests_project
 
         public ProjectManagementHelper RemoveProject()
         {
-            driver.FindElement(By.XPath("//input[@value='Delete Project']")).Click();
+            //driver.FindElement(By.XPath("//input[@value='Delete Project']")).Click();
+            driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
             return this;
         }
 
         public ProjectManagementHelper ConfirmRemovingProject()
         {
-            driver.FindElement(By.XPath("//input[@value='Delete Project']")).Click();
+            //driver.FindElement(By.XPath("//input[@value='Delete Project']")).Click();
+            driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
             return this;
         }
     }

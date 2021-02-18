@@ -45,7 +45,8 @@ namespace mantis_tests_project
             //driver.FindElement(By.ClassName("main-content")).FindElement(By.ClassName("page-content"))
             //    .FindElements(By.ClassName("nav"))[0].FindElements(By.TagName("li"))[2].FindElement(By.TagName("a")).Click();
 
-            driver.FindElement(By.LinkText("Manage Projects")).Click();
+            //driver.FindElement(By.LinkText("Manage Projects")).Click();
+            driver.FindElement(By.LinkText("Управление проектами")).Click();
         }
     }
 }

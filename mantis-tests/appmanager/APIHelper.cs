@@ -9,6 +9,7 @@ using SimpleBrowser.WebDriver;
 using System.Text.RegularExpressions;
 using mantis_tests.Mantis; // важно! Если красный, перезапусти ссыль в Ref Serv
 
+
 namespace mantis_tests
 {
     public class APIHelper : HelperBase

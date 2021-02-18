@@ -35,6 +35,7 @@ namespace mantis_tests_project
             loginHelper = new LoginHelper(this);
             managementMenu = new ManagementMenuHelper(this, baseURL);
             managementProject = new ProjectManagementHelper(this);
+            API = new APIHelper(this); //new to HW22
         }
 
 
@@ -83,6 +84,8 @@ namespace mantis_tests_project
         {
             get { return managementProject; }
         }
+
+        public APIHelper API { get; set; } //new to HW22
 
 
     }

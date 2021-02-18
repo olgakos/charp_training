@@ -18,16 +18,19 @@ namespace mantis_tests_project
         public void Login(AccountData account)
         {
             Type(By.Name("username"), account.Username);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            //driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            driver.FindElement(By.XPath("//input[@value='Войти']")).Click();
 
             Type(By.Name("password"), account.Password);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            //driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            driver.FindElement(By.XPath("//input[@value='Войти']")).Click();
         }
 
         public void Logout()
         {
             driver.FindElement(By.ClassName("user-info")).Click();
-            driver.FindElement(By.LinkText("Logout")).Click();
+            //driver.FindElement(By.LinkText("Logout")).Click();
+            driver.FindElement(By.LinkText("Выход")).Click();
         }
     }
 }
